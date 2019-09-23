@@ -1,4 +1,4 @@
-class Calculette{
+class Interface{
     public static void main(String argv[]){
         if(argv.length < 1){
             manuel();
@@ -20,3 +20,4 @@ class Calculette{
         System.err.println("Ça ne marche pas comme ça.");
     }
 } 
+
