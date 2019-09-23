@@ -10,6 +10,9 @@ class Calculette extends ListExp {
     }
 
     public double calcul(){
+        if(this.tabExpOrigine.length == 1){
+            return this.tabExpOrigine[0].getValeur();
+        }
         Boolean calc = true; //On ne fait qu'un seul calcul par appel de fonction
         for(int i=0;i<(this.tabExpOrigine.length - 1) / 2;i++){ //On cherche en 1er les exponantiation
             if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '^' && calc){
@@ -18,8 +21,10 @@ class Calculette extends ListExp {
             }else{
                 if(i == 0){
                     this.addExpression(this.tabExpOrigine[0].getValeur());
+                    this.addExpression(this.tabExpOrigine[1].getSymbole());
+                    this.addExpression(this.tabExpOrigine[2].getValeur());
                 }else{
-                    this.addExpression(this.tabExpOrigine[2 * i + 1].getValeur());
+                    this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
                     this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
                 }
             }
@@ -40,8 +45,10 @@ class Calculette extends ListExp {
                 }else{
                     if(i == 0){
                         this.addExpression(this.tabExpOrigine[0].getValeur());
+                        this.addExpression(this.tabExpOrigine[1].getSymbole());
+                        this.addExpression(this.tabExpOrigine[2].getValeur());
                     }else{
-                        this.addExpression(this.tabExpOrigine[2 * i + 1].getValeur());
+                        this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
                         this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
                     }
                 }
@@ -55,14 +62,15 @@ class Calculette extends ListExp {
                 for(int i=0;i<(this.tabExpOrigine.length - 1) / 2;i++){ //On cherche en 3eme les additions
                     if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '+' && calc){
                         this.addExpression(this.tabExpOrigine[2 * i].getValeur() + this.tabExpOrigine[2 * i + 2].getValeur());
-                        System.out.println("plus");
                     }else if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '-' && calc){
                         this.addExpression(this.tabExpOrigine[2 * i].getValeur() - this.tabExpOrigine[2 * i + 2].getValeur());
                     }else{
                         if(i==0){
                             this.addExpression(this.tabExpOrigine[0].getValeur());
+                            this.addExpression(this.tabExpOrigine[1].getSymbole());
+                            this.addExpression(this.tabExpOrigine[2].getValeur());
                         }else{
-                            this.addExpression(this.tabExpOrigine[2 * i + 1].getValeur());
+                            this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
                             this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
                         }
                     }
