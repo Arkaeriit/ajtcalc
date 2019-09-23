@@ -4,6 +4,10 @@ class Decodeur {
     private Boolean initTabl; //Indique si tabExp est vide ou pas
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
+        succes = false; //Initiaalisation
+        initTabl = false; 
+
+
         int pointeurFormule = 0;
         Boolean nombre = true;//On s'attend à avoir une suite de nombres et d'oppérations.
         while(pointeurFormule < formule.length()){
@@ -22,36 +26,46 @@ class Decodeur {
                String nmb = formule.substring(startNombre,pointeurFormule); //On récupère le nombre
                 if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
                     double val = Double.parseDouble(nmb);
+                    this.addExpression(val);
                     nombre = false;
                 }else{
                    succes = false;
+                   return;
                 }
             }else{ //On a une oppération
                 switch(formule.charAt(pointeurFormule)){
                     case '+':
                         pointeurFormule++;
+                        this.addExpression('+');
                         break;
                     case '-':
                         pointeurFormule++;
+                        this.addExpression('-');
                         break;
                     case '/':
                         pointeurFormule++;
+                        this.addExpression('/');
                         break;
                     case ':':
                         pointeurFormule++;
+                        this.addExpression('/');
                         break;
                     case 'x':
                         pointeurFormule++;
+                        this.addExpression('x');
                         break;
                     case '*':
                         if(formule.charAt(pointeurFormule + 1) == '*'){
+                            this.addExpression('^');
                             pointeurFormule += 2;
                         }else{
                             pointeurFormule++;
+                            this.addExpression('x');
                         }
                         break;
                     default :
                         succes = false;
+                        return;
                 }
                 nombre = true;
             } //EndIf        
@@ -83,6 +97,7 @@ class Decodeur {
         }else{
             this.tabExp = new Expression[1];
             tabExp[0] = new Expression(nombre);
+            this.initTabl = true;
         }
     }
 }

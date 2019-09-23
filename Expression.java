@@ -39,12 +39,19 @@ class Expression {
     public Boolean resolution(){ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
         this.decodage = new Decodeur(this.formule);
         if(this.decodage.succes){
+            for(int i = 0;i < this.decodage.tabExp.length;i++){
+                System.out.println("yes");
+            }
             return true;
         }else{
-            System.err.println("On ne sais pas encore résoudre l'expression suivante: ");
-            System.err.println(this.formule);
+            this.unresolvable();
             return false;
         }
+    }
+
+    private void unresolvable(){
+        System.err.println("On ne sais pas encore résoudre l'expression suivante: ");
+        System.err.println(this.formule);
     }
 
 }
