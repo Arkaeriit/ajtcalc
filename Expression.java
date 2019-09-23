@@ -31,17 +31,22 @@ class Expression {
             if(nombre){
                 int startNombre = pointeurFormule; //début du nombre
                 int xpoint = 0; //Compte le nombre de . et de ,
-                while(Character.isDigit(this.formule.charAt(pointeurFormule)) || this.formule.charAt(pointeurFormule) == ',' || this.formule.charAt(pointeurFormule) == '.'){
-                    System.out.println("nmb");
+                while(Character.isDigit(this.formule.charAt(pointeurFormule)) || this.formule.charAt(pointeurFormule) == '.'){
                     pointeurFormule++;
                     if(pointeurFormule == this.formule.length()){ //On a dépasé la taille max
                         break;
                     }
-                    if(this.formule.charAt(pointeurFormule) == '.' || this.formule.charAt(pointeurFormule) == ','){
+                    if(this.formule.charAt(pointeurFormule) == '.'){
                         xpoint++;
                     }
                 }
-                nombre = false;
+               String nmb = this.formule.substring(startNombre,pointeurFormule); //On récupère le nombre
+                if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
+                    double val = Double.parseDouble(nmb);
+                    nombre = false;
+                }else{
+                    return false;
+                }
             }else{ //On a une oppération
                 switch(this.formule.charAt(pointeurFormule)){
                     case '+':
