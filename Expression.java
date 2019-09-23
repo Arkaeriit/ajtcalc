@@ -3,9 +3,9 @@ class Expression {
     public Boolean ValeurSym; //Indique si on est une valleur ou une syblole de calcul
     public Boolean solved; //Indique si on connait la valeur de l'exression
 
-    private int valeur;
-    private Character Symbole;
-    private Expression[] decoupage; //Les expressions vont être découpées en sous-éléments calculables
+    private double valeur;
+    private char symbole;
+    private Decodeur  decodage; //Les expressions vont être découpées en sous-éléments calculables
 
     public Expression(String formule){ //On créé un élément avec une formule à calculer
         this.formule = formule;
@@ -14,8 +14,31 @@ class Expression {
         this.valeur = 0;
     }
 
+    public Expression(double valeur) { //On connait une valeur
+        this.ValeurSym = true;
+        this.solved = true;
+        this.valeur = valeur;
+    } 
+
+    public Expression(char symbole) { //On connait le symbole
+        this.ValeurSym = false;
+        this.solved = true;
+        this.symbole = symbole;
+    }
+
+
+    public double getValeur(){
+        return this.valeur;
+    }
+
+    public char getSymbole(){
+        return this.symbole;
+    }
+
+
     public Boolean resolution(){ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
-        if(this.decode()){
+        this.decodage = new Decodeur(this.formule);
+        if(this.decodage.succes){
             return true;
         }else{
             System.err.println("On ne sais pas encore résoudre l'expression suivante: ");
@@ -24,59 +47,4 @@ class Expression {
         }
     }
 
-    public Boolean decode(){ //On lit la formule et on remplie avec découpage
-        int pointeurFormule = 0;
-        Boolean nombre = true;//On s'attend à avoir une suite de nombres et d'oppérations.
-        while(pointeurFormule < this.formule.length()){
-            if(nombre){
-                int startNombre = pointeurFormule; //début du nombre
-                int xpoint = 0; //Compte le nombre de . et de ,
-                while(Character.isDigit(this.formule.charAt(pointeurFormule)) || this.formule.charAt(pointeurFormule) == '.'){
-                    pointeurFormule++;
-                    if(pointeurFormule == this.formule.length()){ //On a dépasé la taille max
-                        break;
-                    }
-                    if(this.formule.charAt(pointeurFormule) == '.'){
-                        xpoint++;
-                    }
-                }
-               String nmb = this.formule.substring(startNombre,pointeurFormule); //On récupère le nombre
-                if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
-                    double val = Double.parseDouble(nmb);
-                    nombre = false;
-                }else{
-                    return false;
-                }
-            }else{ //On a une oppération
-                switch(this.formule.charAt(pointeurFormule)){
-                    case '+':
-                        pointeurFormule++;
-                        break;
-                    case '-':
-                        pointeurFormule++;
-                        break;
-                    case '/':
-                        pointeurFormule++;
-                        break;
-                    case ':':
-                        pointeurFormule++;
-                        break;
-                    case 'x':
-                        pointeurFormule++;
-                        break;
-                    case '*':
-                        if(this.formule.charAt(pointeurFormule + 1) == '*'){
-                            pointeurFormule += 2;
-                        }else{
-                            pointeurFormule++;
-                        }
-                        break;
-                    default :
-                        return false;
-                }
-                nombre = true;
-            } //EndIf        
-        }//End while
-        return !nombre; //Si on termine pas par un nombre c'est qu'il y a une erreur
-    }
 }
