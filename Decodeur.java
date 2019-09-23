@@ -1,7 +1,5 @@
-class Decodeur {
-    public Expression[] tabExp;
+class Decodeur extends ListExp {
     public Boolean succes;
-    private Boolean initTabl; //Indique si tabExp est vide ou pas
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
         succes = false; //Initiaalisation
@@ -73,31 +71,5 @@ class Decodeur {
         succes = !nombre; //Si on termine pas par un nombre c'est qu'il y a une erreur   
     }
 
-    private void addExpression(char symbole){
-        if(initTabl){
-            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
-            for(int i=0;i < this.tabExp.length;i++){
-                tmp[i] = this.tabExp[i];
-            }
-            tmp[this.tabExp.length] = new Expression(symbole);
-            this.tabExp = tmp;
-        }else{
-            System.err.println("Erreur impossible");
-        }
-    }
-
-    private void addExpression(double nombre){
-        if(initTabl){
-            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
-            for(int i=0;i < this.tabExp.length;i++){
-                tmp[i] = this.tabExp[i];
-            }
-            tmp[this.tabExp.length] = new Expression(nombre);
-            this.tabExp = tmp;
-        }else{
-            this.tabExp = new Expression[1];
-            tabExp[0] = new Expression(nombre);
-            this.initTabl = true;
-        }
-    }
 }
+

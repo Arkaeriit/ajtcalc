@@ -42,7 +42,10 @@ class Expression {
             for(int i = 0;i < this.decodage.tabExp.length;i++){
                 if(!this.decodage.tabExp[i].solved)
                     this.decodage.tabExp[i].resolution();
-                this.calcul();
+                Calculette calculette = new Calculette(this.decodage.tabExp);
+                calculette.calcul();
+                this.valeur = calculette.valeur;
+                
             }
             return true;
         }else{
@@ -56,13 +59,5 @@ class Expression {
         System.err.println(this.formule);
     }
 
-    private void calcul(){
-        this.valeur = 0;
-        for(int i=0;i<(this.decodage.tabExp.length - 1) / 2;i++){ //On cherche en 1er les exponantiation
-            if(this.decodage.tabExp[ 2 * i + 1 ].getSymbole() == '^'){
-            
-            }
-        }
-    }
 }  
 
