@@ -42,11 +42,9 @@ class Expression {
             for(int i = 0;i < this.decodage.tabExp.length;i++){
                 if(!this.decodage.tabExp[i].solved)
                     this.decodage.tabExp[i].resolution();
-                Calculette calculette = new Calculette(this.decodage.tabExp);
-                calculette.calcul();
-                this.valeur = calculette.valeur;
-                
             }
+            Calculette calculette = new Calculette(this.decodage.tabExp);
+            this.valeur = calculette.calcul();    
             return true;
         }else{
             this.unresolvable();

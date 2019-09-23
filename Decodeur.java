@@ -2,8 +2,8 @@ class Decodeur extends ListExp {
     public Boolean succes;
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
-        succes = false; //Initiaalisation
-        initTabl = false; 
+        this.succes = false; //Initialisation
+        this.init(); 
 
 
         int pointeurFormule = 0;

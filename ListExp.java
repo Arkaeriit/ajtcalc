@@ -1,6 +1,6 @@
 class ListExp {
     public Expression[] tabExp;
-    protected Boolean initTabl; //Indique si tabExp est vide ou pas
+    private Boolean initTabl; //Indique si tabExp est vide ou pas
 
     protected void addExpression(char symbole){
         if(initTabl){
@@ -29,4 +29,9 @@ class ListExp {
             this.initTabl = true;
         }
     }
+
+    protected void init(){
+        this.initTabl = false;
+    }
+
 }
