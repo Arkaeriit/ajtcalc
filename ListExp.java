@@ -3,39 +3,37 @@ class ListExp {
     private Boolean initTabl; //Indique si tabExp est vide ou pas
 
     public ListExp(){
-        this.initTabl = false;
+        initTabl = false;
     }
 
     public ListExp(Expression[] tabExp){
         if(tabExp.length > 0){
             this.tabExp = tabExp;
-            this.initTabl = true;
+            initTabl = true;
         }else{
-            this.initTabl = false;
+            initTabl = false;
         }
     }
 
     public String toString(){
         String ret = "";
-        for(int i=0;i<this.tabExp.length;i++){
+        for(int i=0;i<tabExp.length;i++){
             if(i%2 == 0)
-                //ret = ret.concat(this.tabExp[i].getValeur());
-                System.out.print(this.tabExp[i].getValeur());
+                ret = ret.concat(String.format("%d",tabExp[i].getValeur()));
             else
-                //ret = ret.concat(this.tabExp[i].getSymbole());
-                System.out.print(this.tabExp[i].getSymbole());
+                ret = ret.concat(String.format("%c",tabExp[i].getSymbole()));
         }
         return ret;
     }
 
     protected void addExpression(char symbole){
         if(initTabl){
-            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
-            for(int i=0;i < this.tabExp.length;i++){
-                tmp[i] = this.tabExp[i];
+            Expression[] tmp = new Expression[ tabExp.length + 1 ];
+            for(int i=0;i < tabExp.length;i++){
+                tmp[i] = tabExp[i];
             }
-            tmp[this.tabExp.length] = new Expression(symbole);
-            this.tabExp = tmp;
+            tmp[tabExp.length] = new Expression(symbole);
+            tabExp = tmp;
         }else{
             System.err.println("Erreur impossible");
         }
@@ -43,50 +41,50 @@ class ListExp {
 
     protected void addExpression(double nombre){
         if(initTabl){
-            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
-            for(int i=0;i < this.tabExp.length;i++){
-                tmp[i] = this.tabExp[i];
+            Expression[] tmp = new Expression[ tabExp.length + 1 ];
+            for(int i=0;i < tabExp.length;i++){
+                tmp[i] = tabExp[i];
             }
-            tmp[this.tabExp.length] = new Expression(nombre);
-            this.tabExp = tmp;
+            tmp[tabExp.length] = new Expression(nombre);
+            tabExp = tmp;
         }else{
-            this.tabExp = new Expression[1];
+            tabExp = new Expression[1];
             tabExp[0] = new Expression(nombre);
-            this.initTabl = true;
+            initTabl = true;
         }
     }
 
     protected void addExpression(String formule){
         if(initTabl){
-            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
-            for(int i=0;i < this.tabExp.length;i++){
-                tmp[i] = this.tabExp[i];
+            Expression[] tmp = new Expression[ tabExp.length + 1 ];
+            for(int i=0;i < tabExp.length;i++){
+                tmp[i] = tabExp[i];
             }
-            tmp[this.tabExp.length] = new Expression(formule);
-            this.tabExp = tmp;
+            tmp[tabExp.length] = new Expression(formule);
+            tabExp = tmp;
         }else{
-            this.tabExp = new Expression[1];
+            tabExp = new Expression[1];
             tabExp[0] = new Expression(formule);
-            this.initTabl = true;
+            initTabl = true;
         }
     }
     protected void init(){
-        this.initTabl = false;
+        initTabl = false;
     }
 
     protected int nombreOperations(){
-        if(this.initTabl){
-            return (this.tabExp.length - 1)/2;
+        if(initTabl){
+            return (tabExp.length - 1)/2;
         }else{
             return 0;
         }
     }
 
     protected char getNSymbole(int i){
-        return this.tabExp[2 * i + 1].getSymbole();
+        return tabExp[2 * i + 1].getSymbole();
     }
 
     protected double getNValeur(int i){
-        return this.tabExp[2 * i].getValeur();
+        return tabExp[2 * i].getValeur();
     }
 }

@@ -4,54 +4,54 @@ class Expression {
 
     private double valeur;
     private char symbole;
-    private Decodeur  decodage; //Les expressions vont être découpées en sous-éléments calculables
+    //private Decodeur  decodage; //Les expressions vont être découpées en sous-éléments calculables
 
     public Expression(String formule){ //On créé un élément avec une formule à calculer
         this.formule = formule;
-        this.solved = false; //Mais on ne la connait pas encore.
-        this.valeur = 0;
+        solved = false; //Mais on ne la connait pas encore.
+        valeur = 0;
     }
 
     public Expression(double valeur) { //On connait une valeur
-        this.solved = true;
+        solved = true;
         this.valeur = valeur;
     } 
 
     public Expression(char symbole) { //On connait le symbole
-        this.solved = true;
+        solved = true;
         this.symbole = symbole;
     }
 
 
     public double getValeur(){
-        return this.valeur;
+        return valeur;
     }
 
     public char getSymbole(){
-        return this.symbole;
+        return symbole;
     }
 
 
     public Boolean resolution(){ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
-        this.decodage = new Decodeur(this.formule);
-        if(this.decodage.succes){
-            for(int i = 0;i < this.decodage.tabExp.length;i++){
-                if(!this.decodage.tabExp[i].solved)
-                    this.decodage.tabExp[i].resolution();
+        Decodeur decodage = new Decodeur(formule);
+        if(decodage.succes){
+            for(int i = 0;i < decodage.tabExp.length;i++){
+                if(!decodage.tabExp[i].solved)
+                    decodage.tabExp[i].resolution();
             }
-            Calculette calculette = new Calculette(this.decodage.tabExp);
-            this.valeur = calculette.calcul();    
-            this.solved = true;
+            Calculette calculette = new Calculette(decodage.tabExp);
+            valeur = calculette.calcul();    
+            solved = true;
             return true;
         }else{
-            this.unresolvable();
+            unresolvable();
             return false;
         }
     }
 
     private void unresolvable(){
         System.err.println("On ne sais pas encore résoudre l'expression suivante: ");
-        System.err.println(this.formule);
+        System.err.println(formule);
     }
 
 }  

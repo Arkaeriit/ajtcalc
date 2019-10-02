@@ -2,8 +2,8 @@ class Decodeur extends ListExp {
     public Boolean succes;
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
-        this.succes = false; //Initialisation
-        this.init(); 
+        succes = false; //Initialisation
+        init(); 
 
 
         int pointeurFormule = 0;
@@ -33,7 +33,7 @@ class Decodeur extends ListExp {
                         succes = false;
                         return;
                     }else{
-                        this.addExpression(formule.substring(debut + 1,pointeurFormule - 1));
+                        addExpression(formule.substring(debut + 1,pointeurFormule - 1));
                         nombre = false;
                     }
                 }else{ //Nombre mais pas parenthèse
@@ -51,7 +51,7 @@ class Decodeur extends ListExp {
                    String nmb = formule.substring(startNombre,pointeurFormule); //On récupère le nombre
                     if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
                         double val = Double.parseDouble(nmb);
-                        this.addExpression(val);
+                        addExpression(val);
                         nombre = false;
                     }else{
                        succes = false;
@@ -62,35 +62,35 @@ class Decodeur extends ListExp {
                 switch(formule.charAt(pointeurFormule)){
                     case '+':
                         pointeurFormule++;
-                        this.addExpression('+');
+                        addExpression('+');
                         break;
                     case '-':
                         pointeurFormule++;
-                        this.addExpression('-');
+                        addExpression('-');
                         break;
                     case '/':
                         pointeurFormule++;
-                        this.addExpression('/');
+                        addExpression('/');
                         break;
                     case ':':
                         pointeurFormule++;
-                        this.addExpression('/');
+                        addExpression('/');
                         break;
                     case 'x':
                         pointeurFormule++;
-                        this.addExpression('x');
+                        addExpression('x');
                         break;
                     case '^':
                         pointeurFormule++;
-                        this.addExpression('^');
+                        addExpression('^');
                         break;
                     case '*':
                         if(formule.charAt(pointeurFormule + 1) == '*'){
-                            this.addExpression('^');
+                            addExpression('^');
                             pointeurFormule += 2;
                         }else{
                             pointeurFormule++;
-                            this.addExpression('x');
+                            addExpression('x');
                         }
                         break;
                     default :
