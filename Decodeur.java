@@ -10,16 +10,16 @@ class Decodeur extends ListExp {
         Boolean nombre = true;//On s'attend à avoir une suite de nombres et d'oppérations.
         while(pointeurFormule < formule.length()){
             if(nombre){
-                if(formule.charAt(pointeurFormule) == '('){ //Une parenthèse
+                if(formule.charAt(pointeurFormule) == '(' || formule.charAt(pointeurFormule) == '[' || formule.charAt(pointeurFormule) == '{'){ //Une parenthèse
                     int PilePar = 0;
                     int debut = pointeurFormule;
                     Boolean out = true; //Indique si on a trouvé la parenthèse fermante
                     pointeurFormule++;
                     while(pointeurFormule < formule.length() && out){
                         char act = formule.charAt(pointeurFormule);
-                        if(act == '('){
+                        if(act == '(' || act == '[' || act == '{'){
                             PilePar++;
-                        }else if(act == ')'){
+                        }else if(act == ')' || act == ']' || act == '}'){
                             if(PilePar > 0){
                                 PilePar--;
                             }else{
