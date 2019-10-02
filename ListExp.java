@@ -56,6 +56,20 @@ class ListExp {
         }
     }
 
+    protected void addExpression(String formule){
+        if(initTabl){
+            Expression[] tmp = new Expression[ this.tabExp.length + 1 ];
+            for(int i=0;i < this.tabExp.length;i++){
+                tmp[i] = this.tabExp[i];
+            }
+            tmp[this.tabExp.length] = new Expression(formule);
+            this.tabExp = tmp;
+        }else{
+            this.tabExp = new Expression[1];
+            tabExp[0] = new Expression(formule);
+            this.initTabl = true;
+        }
+    }
     protected void init(){
         this.initTabl = false;
     }

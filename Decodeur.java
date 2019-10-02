@@ -10,25 +10,53 @@ class Decodeur extends ListExp {
         Boolean nombre = true;//On s'attend à avoir une suite de nombres et d'oppérations.
         while(pointeurFormule < formule.length()){
             if(nombre){
-                int startNombre = pointeurFormule; //début du nombre
-                int xpoint = 0; //Compte le nombre de . et de ,
-                while(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '.'){
+                if(formule.charAt(pointeurFormule) == '('){ //Une parenthèse
+                    int PilePar = 0;
+                    int debut = pointeurFormule;
+                    Boolean out = true; //Indique si on a trouvé la parenthèse fermante
                     pointeurFormule++;
-                    if(pointeurFormule == formule.length()){ //On a dépasé la taille max
-                        break;
+                    while(pointeurFormule < formule.length() && out){
+                        char act = formule.charAt(pointeurFormule);
+                        if(act == '('){
+                            PilePar++;
+                        }else if(act == ')'){
+                            if(PilePar > 0){
+                                PilePar--;
+                            }else{
+                                out = false;
+                            }
+                        }
+                        pointeurFormule++;
                     }
-                    if(formule.charAt(pointeurFormule) == '.'){
-                        xpoint++;
+                    if(out){
+                        System.err.println("Parenthesis mismatch");
+                        succes = false;
+                        return;
+                    }else{
+                        this.addExpression(formule.substring(debut,pointeurFormule));
+                        nombre = false;
                     }
-                }
-               String nmb = formule.substring(startNombre,pointeurFormule); //On récupère le nombre
-                if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
-                    double val = Double.parseDouble(nmb);
-                    this.addExpression(val);
-                    nombre = false;
-                }else{
-                   succes = false;
-                   return;
+                }else{ //Nombre mais pas parenthèse
+                    int startNombre = pointeurFormule; //début du nombre
+                    int xpoint = 0; //Compte le nombre de . et de ,
+                    while(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '.'){
+                        pointeurFormule++;
+                        if(pointeurFormule == formule.length()){ //On a dépasé la taille max
+                            break;
+                        }
+                        if(formule.charAt(pointeurFormule) == '.'){
+                            xpoint++;
+                        }
+                    }
+                   String nmb = formule.substring(startNombre,pointeurFormule); //On récupère le nombre
+                    if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
+                        double val = Double.parseDouble(nmb);
+                        this.addExpression(val);
+                        nombre = false;
+                    }else{
+                       succes = false;
+                       return;
+                    }
                 }
             }else{ //On a une oppération
                 switch(formule.charAt(pointeurFormule)){
