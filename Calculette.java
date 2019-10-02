@@ -1,93 +1,32 @@
 class Calculette extends ListExp {
 
     public double valeur;
-    private Expression[] tabExpOrigine;
+    private ListExp tabExpOrigine;
 
     public Calculette(Expression[] tabExp){
-        this.tabExpOrigine = tabExp;
+        System.out.println(tabExp.length);
+        this.tabExpOrigine = new ListExp(tabExp);
         this.init();
         this.valeur = 0;
+        System.out.println("New calc");
+        System.err.println(this.tabExpOrigine.toString());
     }
 
     public double calcul(){
-        if(this.tabExpOrigine.length == 1){
-            return this.tabExpOrigine[0].getValeur();
-        }
-        Boolean calc = true; //On ne fait qu'un seul calcul par appel de fonction
-        for(int i=0;i<(this.tabExpOrigine.length - 1) / 2;i++){ //On cherche en 1er les exponantiation
-            if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '^' && calc){
-                this.addExpression(Math.pow(this.tabExpOrigine[2 * i].getValeur(),this.tabExpOrigine[2 * i + 2].getValeur()));
-                calc = false;
+        double tempo = this.tabExpOrigine.tabExp[0].getValeur();
+        for(int i=0;i<this.tabExpOrigine.nombreOperations();i++){
+            if(this.tabExpOrigine.getNSymbole(i) == '+'){
+                tempo = tempo + this.tabExpOrigine.getNValeur(i+1);
             }else{
-                if(i == 0){
-                    this.addExpression(this.tabExpOrigine[0].getValeur());
-                    this.addExpression(this.tabExpOrigine[1].getSymbole());
-                    this.addExpression(this.tabExpOrigine[2].getValeur());
-                }else{
-                    this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
-                    this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
-                }
+                this.addExpression(tempo);
+                this.addExpression(this.tabExpOrigine.getNSymbole(i));
+                tempo = this.getNValeur(i+1);
             }
         }
-        if(!calc){ //Il y a ey une exponentiation
-            Calculette calcRecursion = new Calculette(this.tabExp);
-            return calcRecursion.calcul();
-        }else{
-            this.tabExpOrigine = tabExp;
-            this.init();
-            for(int i=0;i<(this.tabExpOrigine.length - 1) / 2;i++){ //On cherche en 2eme les multiplications
-                if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == 'x' && calc){
-                    this.addExpression(this.tabExpOrigine[2 * i].getValeur() * this.tabExpOrigine[2 * i + 2].getValeur());
-                    calc = false;
-                }else if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '/' && calc){
-                    this.addExpression(this.tabExpOrigine[2 * i].getValeur() / this.tabExpOrigine[2 * i + 2].getValeur());
-                    calc = false;
-                }else{
-                    if(i == 0){
-                        this.addExpression(this.tabExpOrigine[0].getValeur());
-                        this.addExpression(this.tabExpOrigine[1].getSymbole());
-                        this.addExpression(this.tabExpOrigine[2].getValeur());
-                    }else{
-                        this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
-                        this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
-                    }
-                }
-            }
-            if(!calc){
-                Calculette calcRecursion = new Calculette(this.tabExp);
-                return calcRecursion.calcul();
-            }else{
-                this.tabExpOrigine = tabExp;
-                this.init();
-                for(int i=0;i<(this.tabExpOrigine.length - 1) / 2;i++){ //On cherche en 3eme les additions
-                    if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '+' && calc){
-                        this.addExpression(this.tabExpOrigine[2 * i].getValeur() + this.tabExpOrigine[2 * i + 2].getValeur());
-                    }else if(this.tabExpOrigine[ 2 * i + 1 ].getSymbole() == '-' && calc){
-                        this.addExpression(this.tabExpOrigine[2 * i].getValeur() - this.tabExpOrigine[2 * i + 2].getValeur());
-                    }else{
-                        if(i==0){
-                            this.addExpression(this.tabExpOrigine[0].getValeur());
-                            this.addExpression(this.tabExpOrigine[1].getSymbole());
-                            this.addExpression(this.tabExpOrigine[2].getValeur());
-                        }else{
-                            this.addExpression(this.tabExpOrigine[2 * i + 1].getSymbole());
-                            this.addExpression(this.tabExpOrigine[2 * i + 2].getValeur());
-                        }
-                    }
-                }
-                if(!calc){
-                    Calculette calcRecursion = new Calculette(this.tabExp);
-                    return calcRecursion.calcul();
-                }else{
-                    if(this.tabExp.length == 1){
-                        return this.tabExp[0].getValeur();
-                    }else{
-                        System.err.println("Erreur : pas de résultat. "+this.tabExp.length+" éléments restants.");
-                        return 0;
-                    }
-                }
-            }
-        }
+        this.addExpression(tempo);
+        return this.tabExp[0].getValeur();
     }
+
+
 
 }
