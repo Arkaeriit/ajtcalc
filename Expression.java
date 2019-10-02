@@ -1,6 +1,5 @@
 class Expression {
     private String formule; //La formule à calculer.
-    public Boolean ValeurSym; //Indique si on est une valleur ou une syblole de calcul
     public Boolean solved; //Indique si on connait la valeur de l'exression
 
     private double valeur;
@@ -9,19 +8,16 @@ class Expression {
 
     public Expression(String formule){ //On créé un élément avec une formule à calculer
         this.formule = formule;
-        this.ValeurSym = true; //On récupèrera une valeur calculable
         this.solved = false; //Mais on ne la connait pas encore.
         this.valeur = 0;
     }
 
     public Expression(double valeur) { //On connait une valeur
-        this.ValeurSym = true;
         this.solved = true;
         this.valeur = valeur;
     } 
 
     public Expression(char symbole) { //On connait le symbole
-        this.ValeurSym = false;
         this.solved = true;
         this.symbole = symbole;
     }
@@ -45,6 +41,7 @@ class Expression {
             }
             Calculette calculette = new Calculette(this.decodage.tabExp);
             this.valeur = calculette.calcul();    
+            this.solved = true;
             return true;
         }else{
             this.unresolvable();

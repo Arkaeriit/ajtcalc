@@ -28,12 +28,12 @@ class Decodeur extends ListExp {
                         }
                         pointeurFormule++;
                     }
-                    if(out){
+                    if(out || pointeurFormule - debut < 3){ //On régarde si laes parenthèses se complètent ou si il n'y a rien dedant
                         System.err.println("Parenthesis mismatch");
                         succes = false;
                         return;
                     }else{
-                        this.addExpression(formule.substring(debut,pointeurFormule));
+                        this.addExpression(formule.substring(debut + 1,pointeurFormule - 1));
                         nombre = false;
                     }
                 }else{ //Nombre mais pas parenthèse
