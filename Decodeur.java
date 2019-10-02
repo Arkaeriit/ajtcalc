@@ -52,6 +52,10 @@ class Decodeur extends ListExp {
                         pointeurFormule++;
                         this.addExpression('x');
                         break;
+                    case '^':
+                        pointeurFormule++;
+                        this.addExpression('^');
+                        break;
                     case '*':
                         if(formule.charAt(pointeurFormule + 1) == '*'){
                             this.addExpression('^');
