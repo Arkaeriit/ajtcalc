@@ -2,7 +2,7 @@
 all : ASCcalc.jar 
 
 ASCcalc.jar : Calculette.class Decodeur.class Expression.class Interface.class ListExp.class
-	jar vcf0e ASCcalc.jar Interface Calculette.class Decodeur.class Expression.class Interface.class ListExp.class
+	jar cf0e ASCcalc.jar Interface Calculette.class Decodeur.class Expression.class Interface.class ListExp.class
 
 Calculette.class : Calculette.java
 	javac Calculette.java 
