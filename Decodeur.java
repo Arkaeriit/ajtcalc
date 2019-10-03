@@ -9,6 +9,11 @@ class Decodeur extends ListExp {
         int pointeurFormule = 0;
         Boolean nombre = true;//On s'attend à avoir une suite de nombres et d'oppérations.
         while(pointeurFormule < formule.length()){
+            while(pointeurFormule < formule.length() && formule.charAt(pointeurFormule) == ' ') //Enlève les espaces en trop
+                pointeurFormule++;
+            if(pointeurFormule >= formule.length()) //Gère le cas où le dernier char est un espace
+                break;
+
             if(nombre){
                 if(formule.charAt(pointeurFormule) == '(' || formule.charAt(pointeurFormule) == '[' || formule.charAt(pointeurFormule) == '{'){ //Une parenthèse
                     int PilePar = 0;
