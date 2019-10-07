@@ -43,6 +43,7 @@ To compute a sub-expression first you can put it between parentheses. You can us
 
 Here is a list of some valid expressions:
 * ( 3 * (4.0 + 0.01)) ^3
-* { 3 * 4\*\*2 x 6 - 5 ]^0.3
+* { (3+2) * 4\*\*2 x 6 - 5 ]^0.3
 * 3 \*\* (4 - 5)
 * 4\*10\*\*1+2x10^0
+

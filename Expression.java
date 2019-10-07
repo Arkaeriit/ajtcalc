@@ -50,8 +50,9 @@ class Expression {
     }
 
     private void unresolvable(){
-        System.err.println("On ne sais pas encore résoudre l'expression suivante: ");
+        System.err.println("The following expression can't be solved: ");
         System.err.println(formule);
+        System.err.println("");
     }
 
 }  

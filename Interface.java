@@ -19,7 +19,10 @@ class Interface{
         }
     }
     public static void manuel(){
-        System.err.println("Ça ne marche pas comme ça.");
+        System.err.println("Usage: ajtcalc [expression to solve]\n");
+        System.err.println("The expression to solve is a sequence of number or sub-expression put between parenthesis and operations such as: 3 x ( 4 + 1 )\n");
+        System.err.println("You can use {,[ or ( to open a parenthesis and },] or ) to close one.\nNumber are in the decimal system and can be decimal.");
+        System.err.println("List of operations:\n* addition, symbolised by +\n* substation, symbolised by -\n* multiplication, symbolised by * or x\n* division, symbolised by /\n* exponentiation, symbolised by ^ or **");
     }
 } 
 
