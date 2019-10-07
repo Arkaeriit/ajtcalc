@@ -8,7 +8,7 @@ Example of small calculations:
 
 ## User manual
 
-### installation
+### Installation
 To install this just do
 ```bash
 make && sudo make install
@@ -19,6 +19,8 @@ make && sudo make install
 Usage: `ajtcalc [expression to solve]`
 
 The expression to solve is a sequence of number or sub-expression put between parenthesis and operations such as: `3 x ( 4 + 1 )`
+
+Spaces are ignored, so you can use them to make your expression easier to read while you write them.
 
 #### Operations
 
