@@ -9,7 +9,10 @@ class Interface{
             }
             Expression valeurIn = new Expression(formule);
             if(valeurIn.resolution()){
-                System.out.println(valeurIn.getValeur());     
+                if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur()) //Le résultat est entier
+                    System.out.println((long) valeurIn.getValeur());
+                else
+                    System.out.println(valeurIn.getValeur());     
            }else{
                manuel();
            }

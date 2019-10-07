@@ -1,8 +1,8 @@
 
-all : jtcalc.jar 
+all : ajtcalc.jar 
 
-jtcalc.jar : Classes
-	jar cf0e jtcalc.jar Interface *.class
+ajtcalc.jar : Classes
+	jar cf0e ajtcalc.jar Interface *.class
 
 Classes : Calculette.java Decodeur.java Expression.java Interface.java ListExp.java
 	javac *.java
@@ -10,21 +10,21 @@ Classes : Calculette.java Decodeur.java Expression.java Interface.java ListExp.j
 clean : 
 	rm -f *.class
 	rm -f *.jar
-	rm -f ASCcalc
+	rm -f ajtcalc
 
-install : jtcalc
-	mkdir -p /usr/local/share/jtcalc
-	cp -f jtcalc /usr/local/bin
-	cp -f jtcalc.jar /usr/local/share/jtcalc
-	rm -f jtcalc
+install : ajtcalc
+	mkdir -p /usr/local/share/ajtcalc
+	cp -f ajtcalc /usr/local/bin
+	cp -f ajtcalc.jar /usr/local/share/ajtcalc
+	rm -f ajtcalc
 	
 uninstall : 
 	rm -Rf /usr/local/share/ASCcalc
 	rm -f /usr/local/bin/ASCcalc
 
-jtcalc :
-	echo '#!/bin/sh' > jtcalc
-	echo '#This little stript is ment to lauch the calculator.' >> jtcalc
-	echo 'java -jar /usr/local/share/jtcalc/jtcalc.jar $$@' >> jtcalc 
-	chmod 755 jtcalc
+ajtcalc :
+	echo '#!/bin/sh' > ajtcalc
+	echo '#This little stript is ment to lauch the calculator.' >> ajtcalc
+	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc.jar "$$@"' >> ajtcalc 
+	chmod 755 ajtcalc
 
