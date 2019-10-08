@@ -44,7 +44,7 @@ class Decodeur extends ListExp {
                 }else{ //Nombre mais pas parenthèse
                     int startNombre = pointeurFormule; //début du nombre
                     int xpoint = 0; //Compte le nombre de . et de ,
-                    while(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '.'){
+                    while(Character.isDigit(formule.charAt(pointeurFormule))  || formule.charAt(pointeurFormule) == '-'|| formule.charAt(pointeurFormule) == '.'){
                         pointeurFormule++;
                         if(pointeurFormule == formule.length()){ //On a dépasé la taille max
                             break;
