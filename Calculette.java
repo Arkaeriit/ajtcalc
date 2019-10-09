@@ -1,3 +1,8 @@
+/*--------------------------------------------------------\
+|Cette classe permet de calculer le résultat d'une formule|
+mathématique représentée par une liste d'expressions.     |
+\--------------------------------------------------------*/
+
 class Calculette extends ListExp {
 
     public double valeur;

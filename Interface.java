@@ -1,3 +1,7 @@
+/*----------------------------------------------------------------\
+|Cette classe sert à décoder les arguments et à lacer les calculs.|
+\----------------------------------------------------------------*/
+
 class Interface{
     public static void main(String argv[]){
         if(argv.length < 1){

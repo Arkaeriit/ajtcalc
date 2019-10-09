@@ -1,4 +1,10 @@
-class Nombre extends Formule { //Un nombre est une formule déja résolue
+/*-------------------------------------------------------------------\
+|Cette classe sert à représenter les nombres. Un nombres est         |
+|considéré comme étant une formule mathématique résolue. Si on créé  |
+|un nouveau nombre à partir d'une formule il va la résoudre tout seul|
+\-------------------------------------------------------------------*/
+
+class Nombre extends Formule {
     private double valeur;
 
     public Nombre(String formule){ //Si on nous donne une formule on va en en premier temps la calculer

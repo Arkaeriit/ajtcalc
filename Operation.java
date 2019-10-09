@@ -1,3 +1,7 @@
+/*------------------------------------------------------------\
+|Cette classe sert à représenter les opérations mathématiques.|
+\------------------------------------------------------------*/
+
 class Operation extends Expression{
 
     private char symbole; //Le symbole d l'oppération

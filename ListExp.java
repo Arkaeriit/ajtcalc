@@ -1,3 +1,7 @@
+/*-------------------------------------------------------------------\
+|Cette classe permet de créer et de modifier des listes d'Expressions|
+\-------------------------------------------------------------------*/
+
 class ListExp {
     public Expression[] tabExp;
     private Boolean initTabl; //Indique si tabExp est vide ou pas

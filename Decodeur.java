@@ -1,3 +1,8 @@
+/*-----------------------------------------------------------------\
+|Cette classe permet de créer une liste d'expression à partir d'une|
+|chaine de charactères.                                            |
+\-----------------------------------------------------------------*/
+
 class Decodeur extends ListExp { //Sert à créer une Liste d'expression à artir d'une chaine de charactères.
     public Boolean succes;
 

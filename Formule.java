@@ -1,3 +1,8 @@
+/*-----------------------------------------------------------------\
+|Cette classe créé la base pour résoudre les formules mathématiques|
+|et donner un nombre.                                              |
+\-----------------------------------------------------------------*/
+
 abstract class Formule extends Expression{
     public Boolean error; //Indique si on connait la valeur de l'exression
     private String formule; //La formule à résoudre
