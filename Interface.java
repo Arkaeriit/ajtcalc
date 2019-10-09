@@ -12,15 +12,15 @@ class Interface{
                 formule = formule.concat(argv[i]);
             }
             formule = BleuBlancRouge(formule);
-            Nombre valeurIn = new Nombre(formule);
-            if(!valeurIn.error){
+            try{
+                Nombre valeurIn = new Nombre(formule);
                 if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur()) //Le résultat est entier
                     System.out.println((long) valeurIn.getValeur());
                 else
                     System.out.println(valeurIn.getValeur());     
-           }else{
-               manuel();
-           }
+            }catch(DecodageExeption e){
+                manuel();
+            }
         }
     }
 
@@ -39,7 +39,6 @@ class Interface{
             else
                 ret = ret.concat(str.substring(i,i+1));
         }
-        System.out.println(ret);
         return ret;
     }
 } 

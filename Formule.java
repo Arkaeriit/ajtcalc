@@ -4,7 +4,6 @@
 \-----------------------------------------------------------------*/
 
 abstract class Formule extends Expression{
-    public Boolean error; //Indique si on connait la valeur de l'exression
     private String formule; //La formule à résoudre
 
     public Formule(){} //Si on veux créer un nombre connu
@@ -21,16 +20,14 @@ abstract class Formule extends Expression{
     }
 
 
-    public double resolution(){ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
-        Decodeur decodage = new Decodeur(formule);
-        if(decodage.succes){
+    public double resolution() throws DecodageExeption{ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
+        try{
+            Decodeur decodage = new Decodeur(formule);
             Calculette calculette = new Calculette(decodage.tabExp);
-            error = false;
             return calculette.calcul();    
-        }else{
+        }catch(DecodageExeption e){
             unresolvable();
-            error = true;
-            return 0;
+            throw e;
         }
     }
 

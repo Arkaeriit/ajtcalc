@@ -7,7 +7,7 @@
 class Nombre extends Formule {
     private double valeur;
 
-    public Nombre(String formule){ //Si on nous donne une formule on va en en premier temps la calculer
+    public Nombre(String formule) throws DecodageExeption{ //Si on nous donne une formule on va en en premier temps la calculer
         super(formule);
         valeur = resolution();        
     }

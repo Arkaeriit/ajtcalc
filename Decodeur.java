@@ -4,10 +4,8 @@
 \-----------------------------------------------------------------*/
 
 class Decodeur extends ListExp {
-    public Boolean succes;
 
-    public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
-        succes = false; //Initialisation
+    public Decodeur(String formule) throws DecodageExeption { //On lit la formule et on remplie avec découpage
         init(); 
 
 
@@ -40,8 +38,7 @@ class Decodeur extends ListExp {
                     }
                     if(out || pointeurFormule - debut < 3){ //On régarde si laes parenthèses se complètent ou si il n'y a rien dedant
                         System.err.println("Parenthesis mismatch");
-                        succes = false;
-                        return;
+                        throw new DecodageExeption("Parenthèse");
                     }else{
                         addExpression(formule.substring(debut + 1,pointeurFormule - 1));
                         nombre = false;
@@ -64,8 +61,7 @@ class Decodeur extends ListExp {
                         addExpression(val);
                         nombre = false;
                     }else{
-                       succes = false;
-                       return;
+                       throw new DecodageExeption("Pas de contenu");
                     }
                 }
             }else{ //On a une oppération
@@ -104,14 +100,20 @@ class Decodeur extends ListExp {
                         }
                         break;
                     default :
-                        succes = false;
-                        return;
+                        throw new DecodageExeption("Symbole inconu");
                 }
                 nombre = true;
             } //EndIf        
         }//End while
-        succes = !nombre; //Si on termine pas par un nombre c'est qu'il y a une erreur   
+        if(nombre){
+            throw new DecodageExeption("Fini par un symbole"); //Si on termine pas par un nombre c'est qu'il y a une erreur   
+        }
     }
 
+}
+
+class DecodageExeption extends Exception { //Permet de voir si on a une erreur de lecture
+    public DecodageExeption() {}
+    public DecodageExeption(String s){super(s);}
 }
 

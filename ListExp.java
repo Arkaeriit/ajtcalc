@@ -58,7 +58,7 @@ class ListExp {
         }
     }
 
-    protected void addExpression(String formule){
+    protected void addExpression(String formule) throws DecodageExeption{
         if(initTabl){
             Expression[] tmp = new Expression[ tabExp.length + 1 ];
             for(int i=0;i < tabExp.length;i++){
