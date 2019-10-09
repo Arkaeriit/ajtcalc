@@ -32,7 +32,7 @@ class ListExp {
             for(int i=0;i < tabExp.length;i++){
                 tmp[i] = tabExp[i];
             }
-            tmp[tabExp.length] = new Expression(symbole);
+            tmp[tabExp.length] = new Operation(symbole);
             tabExp = tmp;
         }else{
             System.err.println("Erreur impossible");
@@ -45,11 +45,11 @@ class ListExp {
             for(int i=0;i < tabExp.length;i++){
                 tmp[i] = tabExp[i];
             }
-            tmp[tabExp.length] = new Expression(nombre);
+            tmp[tabExp.length] = new Nombre(nombre);
             tabExp = tmp;
         }else{
             tabExp = new Expression[1];
-            tabExp[0] = new Expression(nombre);
+            tabExp[0] = new Nombre(nombre);
             initTabl = true;
         }
     }
@@ -60,11 +60,11 @@ class ListExp {
             for(int i=0;i < tabExp.length;i++){
                 tmp[i] = tabExp[i];
             }
-            tmp[tabExp.length] = new Expression(formule);
+            tmp[tabExp.length] = new Nombre(formule);
             tabExp = tmp;
         }else{
             tabExp = new Expression[1];
-            tabExp[0] = new Expression(formule);
+            tabExp[0] = new Nombre(formule);
             initTabl = true;
         }
     }

@@ -1,4 +1,4 @@
-class Decodeur extends ListExp {
+class Decodeur extends ListExp { //Sert à créer une Liste d'expression à artir d'une chaine de charactères.
     public Boolean succes;
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage

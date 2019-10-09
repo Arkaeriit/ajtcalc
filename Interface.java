@@ -7,8 +7,8 @@ class Interface{
             for(int i=0;i < argv.length;i++){
                 formule = formule.concat(argv[i]);
             }
-            Expression valeurIn = new Expression(formule);
-            if(valeurIn.resolution()){
+            Nombre valeurIn = new Nombre(formule);
+            if(!valeurIn.error){
                 if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur()) //Le résultat est entier
                     System.out.println((long) valeurIn.getValeur());
                 else
