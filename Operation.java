@@ -3,7 +3,6 @@ class Operation extends Expression{
     private char symbole; //Le symbole d l'oppération
 
     public Operation(char symbole) { //On connait le symbole
-        super(symbole);
         this.symbole = symbole;
     }
 

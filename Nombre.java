@@ -7,7 +7,6 @@ class Nombre extends Formule { //Un nombre est une formule déja résolue
     }
 
     public Nombre(double valeur) { //On connait une valeur
-        super(valeur);
         this.valeur = valeur;
     } 
 

@@ -2,9 +2,9 @@ abstract class Formule extends Expression{
     public Boolean error; //Indique si on connait la valeur de l'exression
     private String formule; //La formule à résoudre
 
+    public Formule(){} //Si on veux créer un nombre connu
 
     public Formule(String formule){ //On créé un élément avec une formule à calculer
-        super(formule);
         this.formule = formule;
     }
 
@@ -15,9 +15,6 @@ abstract class Formule extends Expression{
         return ' ';
     }
 
-    public Formule(double valeur){
-        super(valeur);
-    } //On a déja le résultat, donc rien à faire
 
     public double resolution(){ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
         Decodeur decodage = new Decodeur(formule);
