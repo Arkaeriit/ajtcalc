@@ -57,7 +57,12 @@ class Decodeur extends ListExp {
                     }
                    String nmb = formule.substring(startNombre,pointeurFormule); //On récupère le nombre
                     if(xpoint < 2 && nmb.length() > 0){ //On vérifie que l'on peut le convertir
-                        double val = Double.parseDouble(nmb);
+                        double val = 0;
+                        try{
+                            val = Double.parseDouble(nmb);
+                        }catch(NumberFormatException e){
+                            throw new DecodageExeption("Erreur nombre");
+                        }
                         addExpression(val);
                         nombre = false;
                     }else{
