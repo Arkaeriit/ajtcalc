@@ -3,7 +3,7 @@
 |chaine de charactères.                                            |
 \-----------------------------------------------------------------*/
 
-class Decodeur extends ListExp { //Sert à créer une Liste d'expression à artir d'une chaine de charactères.
+class Decodeur extends ListExp {
     public Boolean succes;
 
     public Decodeur(String formule){ //On lit la formule et on remplie avec découpage
