@@ -43,7 +43,7 @@ class Decodeur extends ListExp {
                         addExpression(formule.substring(debut + 1,pointeurFormule - 1));
                         nombre = false;
                     }
-                }else{ //Nombre mais pas parenthèse
+                }else if(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '-'){ //Nombre mais pas parenthèse
                     int startNombre = pointeurFormule; //début du nombre
                     int xpoint = 0; //Compte le nombre de . et de ,
                     while(Character.isDigit(formule.charAt(pointeurFormule))  || formule.charAt(pointeurFormule) == '-'|| formule.charAt(pointeurFormule) == '.'){
@@ -68,6 +68,30 @@ class Decodeur extends ListExp {
                     }else{
                        throw new DecodageExeption("Pas de contenu");
                     }
+                }else{ //On a une fonction
+                    int debutNomFonction = pointeurFormule;
+                    while( formule.charAt(pointeurFormule) != '(' && formule.charAt(pointeurFormule) != '{' && formule.charAt(pointeurFormule) != '[' ){
+                        pointeurFormule++;
+                        if(pointeurFormule == formule.length()){ //On a dépasé la taille max
+                            throw new DecodageExeption("Fonction sans contenu;");
+                        }
+                    }
+                    int finNomFonction = pointeurFormule - 1;
+                    int PilePar = 1; //On cherche la fin de la parenth_se
+                    while(PilePar > 0){
+                        pointeurFormule++;
+                        if(pointeurFormule >= formule.length()) //Limite dépacée
+                            throw new DecodageExeption("Fonction sans fin");
+                        char act = formule.charAt(pointeurFormule);
+                        if(act == '(' || act == '[' || act == '{'){
+                            PilePar++;
+                        }else if(act == ')' || act == ']' || act == '}'){
+                            PilePar--;
+                        }
+                    }
+                    addExpression(formule.substring(debutNomFonction,finNomFonction+1),formule.substring(finNomFonction+2,pointeurFormule));
+                    pointeurFormule ++;
+                    nombre = false;
                 }
             }else{ //On a une oppération
                 switch(formule.charAt(pointeurFormule)){
@@ -118,7 +142,16 @@ class Decodeur extends ListExp {
 }
 
 class DecodageExeption extends Exception { //Permet de voir si on a une erreur de lecture
+    public String problème;
+
     public DecodageExeption() {}
-    public DecodageExeption(String s){super(s);}
+    public DecodageExeption(String s){
+        super(s);
+        problème = s;
+    }
+
+    public void raison(){
+        System.err.println(problème);
+    }
 }
 

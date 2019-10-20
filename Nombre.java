@@ -5,7 +5,7 @@
 \-------------------------------------------------------------------*/
 
 class Nombre extends Formule {
-    private double valeur;
+    protected double valeur;
 
     public Nombre(String formule) throws DecodageExeption{ //Si on nous donne une formule on va en en premier temps la calculer
         super(formule);

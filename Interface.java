@@ -19,6 +19,7 @@ class Interface{
                 else
                     System.out.println(valeurIn.getValeur());     
             }catch(DecodageExeption e){
+                //e.raison(); //debug
                 manuel();
             }
         }

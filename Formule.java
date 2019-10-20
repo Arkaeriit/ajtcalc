@@ -4,7 +4,8 @@
 \-----------------------------------------------------------------*/
 
 abstract class Formule extends Expression{
-    private String formule; //La formule à résoudre
+    //private String formule; //La formule à résoudre
+    protected String formule; //La formule à résoudre
 
     public Formule(){} //Si on veux créer un nombre connu
 
