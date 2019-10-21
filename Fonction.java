@@ -7,9 +7,9 @@
 
 class Fonction extends Nombre {
     
-    public Fonction(String fonction,int argc,String[] argv) throws DecodageExeption{
+    public Fonction(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException {
         super(argv[0]);
-        FonctionExeption e = new FonctionExeption(argc);
+        FonctionException e = new FonctionException(argc);
         if(fonction.equals("abs")){ //dans un premier temps on regarde quelle est la fonction. On utilise des if/else car on ne veut pas faire de suposition sur la taille du nom de la fonction
             e.compareArg(1);
             if(valeur < 0)
@@ -31,21 +31,21 @@ class Fonction extends Nombre {
             e.compareArg(1);
             valeur = Math.ceil(valeur);
         }else{
-            throw new DecodageExeption("Fonction non valide");
+            throw new DecodageException("Fonction non valide");
         }
     }  
 }
 
-class FonctionExeption extends DecodageExeption{ //Sert à vérifier le nombre d'arguments des fonctions
+class FonctionException extends DecodageException{ //Sert à vérifier le nombre d'arguments des fonctions
     
     private int argc;
 
-    public FonctionExeption(int argc){
-        super("Mauvais nombre d'arguments");
+    public FonctionException(int argc){
+        super("Wrong number of arguments");
         this.argc = argc;
     }
 
-    public void compareArg(int argc) throws FonctionExeption{
+    public void compareArg(int argc) throws FonctionException{
         if(argc != this.argc)
             throw this;
     }

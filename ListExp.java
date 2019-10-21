@@ -58,7 +58,7 @@ class ListExp {
         }
     }
 
-    protected void addExpression(String formule) throws DecodageExeption{
+    protected void addExpression(String formule) throws UnsolvableException {
         if(initTabl){
             Expression[] tmp = new Expression[ tabExp.length + 1 ];
             for(int i=0;i < tabExp.length;i++){
@@ -73,7 +73,7 @@ class ListExp {
         }
     }
 
-    protected void addExpression(String fonction,int argc,String[] argv) throws DecodageExeption{
+    protected void addExpression(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException {
         if(initTabl){
             Expression[] tmp = new Expression[ tabExp.length + 1 ];
             for(int i=0;i < tabExp.length;i++){

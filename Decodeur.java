@@ -5,7 +5,7 @@
 
 class Decodeur extends ListExp {
 
-    public Decodeur(String formule) throws DecodageExeption { //On lit la formule et on remplie avec découpage
+    public Decodeur(String formule) throws DecodageException,UnsolvableException { //On lit la formule et on remplie avec découpage
         init(); 
 
 
@@ -37,8 +37,7 @@ class Decodeur extends ListExp {
                         pointeurFormule++;
                     }
                     if(out || pointeurFormule - debut < 3){ //On régarde si laes parenthèses se complètent ou si il n'y a rien dedant
-                        System.err.println("Parenthesis mismatch");
-                        throw new DecodageExeption("Parenthèse");
+                        throw new DecodageException("Parenthesis mismatch");
                     }else{
                         addExpression(formule.substring(debut + 1,pointeurFormule - 1));
                         nombre = false;
@@ -61,12 +60,12 @@ class Decodeur extends ListExp {
                         try{
                             val = Double.parseDouble(nmb);
                         }catch(NumberFormatException e){
-                            throw new DecodageExeption("Erreur nombre");
+                            throw new DecodageException("Invalid number");
                         }
                         addExpression(val);
                         nombre = false;
                     }else{
-                       throw new DecodageExeption("Pas de contenu");
+                       throw new DecodageException("Nothing to solve");
                     }
                 }else{ //On a une fonction
                     int debutNomFonction = pointeurFormule;
@@ -75,7 +74,7 @@ class Decodeur extends ListExp {
                     while( formule.charAt(pointeurFormule) != '(' && formule.charAt(pointeurFormule) != '{' && formule.charAt(pointeurFormule) != '[' ){
                         pointeurFormule++;
                         if(pointeurFormule == formule.length()){ //On a dépasé la taille max
-                            throw new DecodageExeption("Fonction sans contenu;");
+                            throw new DecodageException("Empty function");
                         }
                     }
                     int finNomFonction = pointeurFormule - 1;
@@ -84,7 +83,7 @@ class Decodeur extends ListExp {
                     while(PilePar > 0){
                         pointeurFormule++;
                         if(pointeurFormule >= formule.length()) //Limite dépacée
-                            throw new DecodageExeption("Fonction sans fin");
+                            throw new DecodageException("Unended function");
                         char act = formule.charAt(pointeurFormule);
                         if(act == '(' || act == '[' || act == '{'){
                             PilePar++;
@@ -138,29 +137,29 @@ class Decodeur extends ListExp {
                         }
                         break;
                     default :
-                        throw new DecodageExeption("Symbole inconu");
+                        throw new DecodageException("Unknow symbol");
                 }
                 nombre = true;
             } //EndIf        
         }//End while
         if(nombre){
-            throw new DecodageExeption("Fini par un symbole"); //Si on termine pas par un nombre c'est qu'il y a une erreur   
+            throw new DecodageException("The expression end with an operation symbol"); //Si on termine pas par un nombre c'est qu'il y a une erreur   
         }
     }
 
 }
 
-class DecodageExeption extends Exception { //Permet de voir si on a une erreur de lecture
+class DecodageException extends Exception { //Permet de voir si on a une erreur de lecture
     public String problème;
 
-    public DecodageExeption() {}
-    public DecodageExeption(String s){
+    public DecodageException() {}
+    public DecodageException(String s){
         super(s);
         problème = s;
     }
 
     public void raison(){
-        System.err.println(problème);
+        System.err.println("Reason : "+problème);
     }
 }
 

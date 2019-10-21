@@ -41,6 +41,17 @@ Number are typed in the decimal system. You can use decimal numbers.
 
 To compute a sub-expression first you can put it between parentheses. You can use `(`, `{` or `[` to open parenthesis and `)`, `}` or `]` to close them.
 
+#### functions
+
+You can apply function on numbers or expressions.
+To do thant you have to write the name of the function then it's attributes between parenthesis, bracket or curly brackets.
+List of functions:
+* abs(x) : return the absolute value of x
+* floor(x) : return x rouned down
+* ceil(x) : return x rouned up
+* max(x,y) : return the bigest number between x and y
+* min(x,y) : return the smallest number between x and y
+
 ### Examples
 
 Here is a list of some valid expressions:
@@ -48,4 +59,6 @@ Here is a list of some valid expressions:
 * { (3+2) * 4\*\*2 x 6 - 5 ]^0.3
 * 3 \*\* (4 - 5)
 * 4\*10\*\*1+2x10^0
+* 2**max(4,abs(-76*2))
+* abs(floor(-3.5)*3)
 

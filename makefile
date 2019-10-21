@@ -4,7 +4,7 @@ all : ajtcalc.jar
 ajtcalc.jar : Classes
 	jar cf0e ajtcalc.jar Interface *.class
 
-Classes : Calculette.java Decodeur.java Expression.java Interface.java ListExp.java Nombre.java Operation.java Formule.java
+Classes : Calculette.java Decodeur.java Expression.java Interface.java ListExp.java Nombre.java Operation.java Formule.java Fonction.java
 	javac *.java
 
 clean : 
