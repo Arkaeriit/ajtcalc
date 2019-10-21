@@ -89,7 +89,7 @@ class Decodeur extends ListExp {
                             PilePar++;
                         }else if(act == ')' || act == ']' || act == '}'){
                             PilePar--;
-                        }else if(act == ','){ //fin argument
+                        }else if(act == ',' && PilePar == 1){ //fin argument
                             argv[argc] = formule.substring(debutNomArg,pointeurFormule);
                             argc++;
                             debutNomArg = pointeurFormule + 1;
