@@ -59,6 +59,6 @@ Here is a list of some valid expressions:
 * { (3+2) * 4\*\*2 x 6 - 5 ]^0.3
 * 3 \*\* (4 - 5)
 * 4\*10\*\*1+2x10^0
-* 2**max(4,abs(-76*2))
-* abs(floor(-3.5)*3)
+* 2\*\*max(4,abs(-76\*2))
+* abs(floor(-3.5)\*3)
 
