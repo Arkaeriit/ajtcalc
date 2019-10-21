@@ -73,17 +73,17 @@ class ListExp {
         }
     }
 
-    protected void addExpression(String fonction,String formule) throws DecodageExeption{
+    protected void addExpression(String fonction,int argc,String[] argv) throws DecodageExeption{
         if(initTabl){
             Expression[] tmp = new Expression[ tabExp.length + 1 ];
             for(int i=0;i < tabExp.length;i++){
                 tmp[i] = tabExp[i];
             }
-            tmp[tabExp.length] = new Fonction(fonction,formule);
+            tmp[tabExp.length] = new Fonction(fonction,argc,argv);
             tabExp = tmp;
         }else{
             tabExp = new Expression[1];
-            tabExp[0] = new Fonction(fonction,formule);
+            tabExp[0] = new Fonction(fonction,argc,argv);
             initTabl = true;
         }
     }

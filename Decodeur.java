@@ -70,6 +70,8 @@ class Decodeur extends ListExp {
                     }
                 }else{ //On a une fonction
                     int debutNomFonction = pointeurFormule;
+                    String[] argv = new String[2]; //Nombre maximum d'arguments
+                    int argc = 0;
                     while( formule.charAt(pointeurFormule) != '(' && formule.charAt(pointeurFormule) != '{' && formule.charAt(pointeurFormule) != '[' ){
                         pointeurFormule++;
                         if(pointeurFormule == formule.length()){ //On a dépasé la taille max
@@ -77,6 +79,7 @@ class Decodeur extends ListExp {
                         }
                     }
                     int finNomFonction = pointeurFormule - 1;
+                    int debutNomArg = pointeurFormule + 1;
                     int PilePar = 1; //On cherche la fin de la parenth_se
                     while(PilePar > 0){
                         pointeurFormule++;
@@ -87,9 +90,14 @@ class Decodeur extends ListExp {
                             PilePar++;
                         }else if(act == ')' || act == ']' || act == '}'){
                             PilePar--;
+                        }else if(act == ','){ //fin argument
+                            argv[argc] = formule.substring(debutNomArg,pointeurFormule);
+                            argc++;
+                            debutNomArg = pointeurFormule + 1;
                         }
                     }
-                    addExpression(formule.substring(debutNomFonction,finNomFonction+1),formule.substring(finNomFonction+2,pointeurFormule));
+                    argv[argc] = formule.substring(debutNomArg,pointeurFormule);
+                    addExpression(formule.substring(debutNomFonction,finNomFonction+1),argc,argv);
                     pointeurFormule ++;
                     nombre = false;
                 }
