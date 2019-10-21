@@ -10,10 +10,21 @@ class Fonction extends Nombre {
     public Fonction(String fonction,int argc,String[] argv) throws DecodageExeption{
         super(argv[0]);
         if(fonction.compareTo("abs") == 0){ //dans un premier temps on regarde quelle est la fonction. On utilise des if/else car on ne veut pas faire de suposition sur la taille du nom de la fonction
-            if(valeur < 0)
-                valeur = valeur * (-1);
+            if(argc==1){
+                if(valeur < 0)
+                    valeur = valeur * (-1);
+            }else{
+                throw new FonctionExeption();               
+            }
         }else{
             throw new DecodageExeption("Fonction non valide");
         }
     }  
+}
+
+class FonctionExeption extends DecodageExeption{
+    
+    public FonctionExeption(){
+        super("Mauvais nombre d'arguments");
+    }
 }

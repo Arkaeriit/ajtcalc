@@ -11,7 +11,6 @@ class Interface{
             for(int i=0;i < argv.length;i++){
                 formule = formule.concat(argv[i]);
             }
-            formule = BleuBlancRouge(formule);
             try{
                 Nombre valeurIn = new Nombre(formule);
                 if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur()) //Le résultat est entier
@@ -19,8 +18,8 @@ class Interface{
                 else
                     System.out.println(valeurIn.getValeur());     
             }catch(DecodageExeption e){
-                //e.raison(); //debug
-                manuel();
+                e.raison(); //debug
+                //manuel();
             }
         }
     }
@@ -32,15 +31,5 @@ class Interface{
         System.err.println("List of operations:\n* addition, symbolised by +\n* substation, symbolised by -\n* multiplication, symbolised by * or x\n* division, symbolised by /\n* exponentiation, symbolised by ^ or **");
     }
     
-    private static String BleuBlancRouge(String str){ //Transforme les virgules en points pour que les notations françaises soient valides
-        String ret = "";
-        for(int i=0;i < str.length();i++){
-            if(str.charAt(i) == ',')
-                ret = ret.concat(".");
-            else
-                ret = ret.concat(str.substring(i,i+1));
-        }
-        return ret;
-    }
 } 
 
