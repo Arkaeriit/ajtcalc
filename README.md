@@ -18,7 +18,7 @@ make && sudo make install
 
 Usage: `ajtcalc [expression to solve]`
 
-The expression to solve is a sequence of number or sub-expression put between parenthesis and operations such as: `3 x ( 4 + 1 )`
+The expression to solve is a sequence of number or sub-expression put between parentheses and operations such as: `3 x ( 4 + 1 )`
 
 Spaces are ignored, so you can use them to make your expression easier to read while you write them.
 
@@ -44,12 +44,12 @@ To compute a sub-expression first you can put it between parentheses. You can us
 #### functions
 
 You can apply function on numbers or expressions.
-To do thant you have to write the name of the function then it's attributes between parenthesis, bracket or curly brackets.
+To do that you have to write the name of the function then it's attributes between parentheses, bracket or curly brackets.
 List of functions:
 * abs(x) : return the absolute value of x
-* floor(x) : return x rouned down
-* ceil(x) : return x rouned up
-* max(x,y) : return the bigest number between x and y
+* floor(x) : return x rounded down
+* ceil(x) : return x rounded up
+* max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
 
 ### Examples
