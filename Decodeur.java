@@ -69,7 +69,7 @@ class Decodeur extends ListExp {
                     }
                 }else{ //On a une fonction
                     int debutNomFonction = pointeurFormule;
-                    String[] argv = new String[2]; //Nombre maximum d'arguments
+                    String[] argv = new String[4]; //Nombre maximum d'arguments
                     int argc = 0;
                     while( formule.charAt(pointeurFormule) != '(' && formule.charAt(pointeurFormule) != '{' && formule.charAt(pointeurFormule) != '[' ){
                         pointeurFormule++;
@@ -83,7 +83,7 @@ class Decodeur extends ListExp {
                     while(PilePar > 0){
                         pointeurFormule++;
                         if(pointeurFormule >= formule.length()) //Limite dépacée
-                            throw new DecodageException("Unended function");
+                            throw new DecodageException("Never ending function");
                         char act = formule.charAt(pointeurFormule);
                         if(act == '(' || act == '[' || act == '{'){
                             PilePar++;
