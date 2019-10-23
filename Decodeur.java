@@ -45,9 +45,11 @@ class Decodeur extends ListExp {
                 }else if(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '-'){ //Nombre mais pas parenthèse
                     int startNombre = pointeurFormule; //début du nombre
                     int xpoint = 0; //Compte le nombre de . et de ,
-                    Boolean premierChar = true; //Sert à vérifier que les - ne sont qu'en première position
-                    while(Character.isDigit(formule.charAt(pointeurFormule))  || (formule.charAt(pointeurFormule) == '-' && premierChar) || formule.charAt(pointeurFormule) == '.'){
-                        premierChar = false;
+                    Boolean moinsValide = true; //Sert à vérifier que les - ne sont qu'en première position
+                    while(Character.isDigit(formule.charAt(pointeurFormule))  || (formule.charAt(pointeurFormule) == '-' && moinsValide) || formule.charAt(pointeurFormule) == '.' || formule.charAt(pointeurFormule) == 'E'){
+                        moinsValide = false;
+                        if(formule.charAt(pointeurFormule) == 'E')
+                            moinsValide = true; //Si on a un exposant on peut en faire un négatif
                         pointeurFormule++;
                         if(pointeurFormule == formule.length()){ //On a dépasé la taille max
                             break;
