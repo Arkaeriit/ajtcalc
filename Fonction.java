@@ -41,6 +41,10 @@ class Fonction extends Nombre {
             String res = argv[2].replace(argv[1],argv[0]); //On remplace les constituants du troisième argument qui sont égaux au deuxième par le premier
             this.formule = res;
             valeur = resolution();
+        }else if(fonction.equals("solve")){
+            e.compareArg(4);
+            Solveur solveur = new Solveur(argv[0],argv[1],Double.parseDouble(argv[2]),Double.parseDouble(argv[3]));
+            valeur = solveur.getValeur();
         }else{
             throw new DecodageException("Fonction non valide");
         }
