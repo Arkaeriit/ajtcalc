@@ -45,7 +45,9 @@ class Decodeur extends ListExp {
                 }else if(Character.isDigit(formule.charAt(pointeurFormule)) || formule.charAt(pointeurFormule) == '-'){ //Nombre mais pas parenthèse
                     int startNombre = pointeurFormule; //début du nombre
                     int xpoint = 0; //Compte le nombre de . et de ,
-                    while(Character.isDigit(formule.charAt(pointeurFormule))  || formule.charAt(pointeurFormule) == '-'|| formule.charAt(pointeurFormule) == '.'){
+                    Boolean premierChar = true; //Sert à vérifier que les - ne sont qu'en première position
+                    while(Character.isDigit(formule.charAt(pointeurFormule))  || (formule.charAt(pointeurFormule) == '-' && premierChar) || formule.charAt(pointeurFormule) == '.'){
+                        premierChar = false;
                         pointeurFormule++;
                         if(pointeurFormule == formule.length()){ //On a dépasé la taille max
                             break;
@@ -60,7 +62,7 @@ class Decodeur extends ListExp {
                         try{
                             val = Double.parseDouble(nmb);
                         }catch(NumberFormatException e){
-                            throw new DecodageException("Invalid number");
+                            throw new DecodageException("Invalid number ("+nmb+")");
                         }
                         addExpression(val);
                         nombre = false;
