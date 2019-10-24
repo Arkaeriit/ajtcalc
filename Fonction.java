@@ -7,7 +7,7 @@
 
 class Fonction extends Nombre {
     
-    public Fonction(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException {
+    public Fonction(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException,NoSolveJustPrintException {
         super(0); //On met une valeur tampon en attendant de faire des calculs.
         FonctionException e = new FonctionException(argc);
         if(fonction.equals("abs")){ //dans un premier temps on regarde quelle est la fonction. On utilise des if/else car on ne veut pas faire de suposition sur la taille du nom de la fonction
@@ -45,6 +45,9 @@ class Fonction extends Nombre {
             e.compareArg(4);
             Solveur solveur = new Solveur(argv[0],argv[1],Double.parseDouble(argv[2]),Double.parseDouble(argv[3]));
             valeur = solveur.getValeur();
+        }else if(fonction.equals("echo")){
+            e.compareArg(1);
+            throw new NoSolveJustPrintException(argv[0]);
         }else{
             throw new DecodageException("Fonction non valide");
         }
@@ -65,3 +68,17 @@ class FonctionException extends DecodageException{ //Sert à vérifier le nombre
             throw this;
     }
 }
+
+class NoSolveJustPrintException extends Exception { //Sert si on ne doit pas faire de calculs mais seulement afficher des trucs
+    private String message;
+
+    public NoSolveJustPrintException(String message){
+        super();
+        this.message = message;
+    }
+
+    public String getMessage(){
+        return message;
+    }
+}
+

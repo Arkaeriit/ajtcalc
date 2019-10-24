@@ -7,7 +7,7 @@
 class Nombre extends Formule {
     protected double valeur;
 
-    public Nombre(String formule) throws UnsolvableException { //Si on nous donne une formule on va en en premier temps la calculer
+    public Nombre(String formule) throws UnsolvableException,NoSolveJustPrintException { //Si on nous donne une formule on va en en premier temps la calculer
         super(formule);
         valeur = resolution();        
     }

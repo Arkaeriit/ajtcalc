@@ -21,7 +21,7 @@ abstract class Formule extends Expression{
     }
 
 
-    public double resolution() throws UnsolvableException{ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
+    public double resolution() throws UnsolvableException,NoSolveJustPrintException{ //Fait les calculs de manière récursive. Si il y a une erreur de syntaxe on renvoie false, si tout va bien on renvoie true
         try{
             Decodeur decodage = new Decodeur(formule);
             Calculette calculette = new Calculette(decodage.tabExp);

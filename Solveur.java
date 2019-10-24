@@ -9,7 +9,7 @@ class Solveur {
 
     double result;
 
-    public Solveur(String variable,String formule,double min,double max) throws UnsolvableException{
+    public Solveur(String variable,String formule,double min,double max) throws UnsolvableException,NoSolveJustPrintException{
         this.formule = formule;
         this.variable = variable;
         //approximation = (max-min)/1000;
@@ -32,7 +32,7 @@ class Solveur {
         }
     }
 
-    private double evaluate(double valeur) throws UnsolvableException{
+    private double evaluate(double valeur) throws UnsolvableException,NoSolveJustPrintException{
         Double valeurWrap = new Double(valeur);
         //System.out.println("calc : "+formule.replace(variable,valeurWrap.toString()));
         Nombre res = new Nombre(formule.replace(variable,valeurWrap.toString()));
@@ -41,7 +41,7 @@ class Solveur {
     }
         
 
-    private double Newton (double start) throws UnsolvableException,NoProgressNewtonException{ //résolution par la méthode de Newton
+    private double Newton (double start) throws UnsolvableException,NoProgressNewtonException,NoSolveJustPrintException{ //résolution par la méthode de Newton
 
         double point = start;
         double fPoint = evaluate(point);

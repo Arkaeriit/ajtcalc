@@ -22,11 +22,14 @@ class Interface{
                 System.out.println((long) valeurIn.getValeur());
             else
                 System.out.println(valeurIn.getValeur());     
+            System.exit(0);
         }catch(UnsolvableException e){
             quickHelp();
             System.exit(1);
-        }
-        
+        }catch(NoSolveJustPrintException e){
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }        
     }
 
     private static void quickHelp(){

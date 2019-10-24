@@ -5,7 +5,7 @@
 
 class Decodeur extends ListExp {
 
-    public Decodeur(String formule) throws DecodageException,UnsolvableException { //On lit la formule et on remplie avec découpage
+    public Decodeur(String formule) throws DecodageException,UnsolvableException,NoSolveJustPrintException { //On lit la formule et on remplie avec découpage
         init(); 
 
 
