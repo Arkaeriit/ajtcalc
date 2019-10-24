@@ -12,11 +12,12 @@ class Solveur {
     public Solveur(String variable,String formule,double min,double max) throws UnsolvableException{
         this.formule = formule;
         this.variable = variable;
-        approximation = (max-min)/1000;
+        //approximation = (max-min)/1000;
+        approximation = 0.0000001; //Valeur temporaire
 
         try{
             result = Newton(min);
-        }catch(NoProgressNewtonException e){
+        }catch(/*NoProgressNewtonException e*/ Exception e){
             result = min - 1; //On assure un résultat impossible
         }
         if( !(min <= result && result <= max)){
@@ -33,7 +34,9 @@ class Solveur {
 
     private double evaluate(double valeur) throws UnsolvableException{
         Double valeurWrap = new Double(valeur);
+        //System.out.println("calc : "+formule.replace(variable,valeurWrap.toString()));
         Nombre res = new Nombre(formule.replace(variable,valeurWrap.toString()));
+        //System.out.println(res.getValeur());
         return res.getValeur();
     }
         
@@ -44,11 +47,10 @@ class Solveur {
         double fPoint = evaluate(point);
         double previous = 0; //pas encore initialisé
 
-            System.out.println(fPoint+" "+approximation);
         while(Math.abs(fPoint) > approximation){
-            System.out.println(point+" "+fPoint);
-            double fPrime = (evaluate(point) - evaluate(point + approximation/100000)) / (point - approximation/1000000); //dérivé en notre point
+            double fPrime = (evaluate(point) - evaluate(point - approximation/1000)) / (approximation/1000); //dérivé en notre point
             double cross0 = - fPoint/fPrime + point; //calcul  de l'intersection de la tengente avec les absices
+            //System.out.println("point : "+point+" f(point) : "+fPoint+" f'(point) : "+fPrime+" cross0 : "+cross0);
             previous = point; //réset des variavles
             point = cross0;
             fPoint = evaluate(point);
@@ -68,7 +70,7 @@ class NoProgressNewtonException extends Exception {
 
     public NoProgressNewtonException (double valeurBlocante){
         super();
-        System.out.println("!!! "+valeurBlocante);
+        //System.out.println("!!! "+valeurBlocante);
         this.valeurBlocante = valeurBlocante;
     }
 }
