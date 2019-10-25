@@ -140,6 +140,8 @@ class Decodeur extends ListExp {
                             addExpression('x');
                         }
                         break;
+                    case ';': //On met un commentaire derrière, on arrète de lire l'expression
+                        return;
                     default :
                         throw new DecodageException("Unknow symbol");
                 }
@@ -162,8 +164,8 @@ class DecodageException extends Exception { //Permet de voir si on a une erreur 
         problème = s;
     }
 
-    public void raison(){
-        System.err.println("Reason : "+problème);
+    public String raison(){
+        return "Reason : "+problème;
     }
 }
 
