@@ -10,6 +10,7 @@ class Shell {
     Scanner scanner;
 
     public Shell(){
+        Stack.enableStack();
         scanner = new Scanner(System.in);
         Boolean boolKeep = true;
         while(boolKeep)
@@ -24,18 +25,21 @@ class Shell {
         }catch(java.util.NoSuchElementException e){
             return false;
         }
-        if(input.substring(0,5).equals("exit")) //fausse fonction pour sortir du shell
-            return false;
         try{
             Nombre valeurIn = new Nombre(input);
             if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur())
                 System.out.println((long) valeurIn.getValeur());
             else
                 System.out.println(valeurIn.getValeur());
+            Stack.addElem(valeurIn.getValeur());
         }catch(UnsolvableException e){
             System.out.print(e.raison());
+            Stack.addElem(Double.NaN);
         }catch(NoSolveJustPrintException e){
-            System.out.println(e.getMessage());
+            if(e.getSpecialMessage().equals("exit"))
+                return false;
+            System.out.print(e.getMessage());
+            Stack.addElem(Double.NaN);
         }
         return true;
     }

@@ -32,7 +32,7 @@ class Interface{
             quickHelp();
             System.exit(1);
         }catch(NoSolveJustPrintException e){
-            System.out.println(e.getMessage());
+            System.out.print(e.getMessage());
             System.exit(0);
         }        
     }

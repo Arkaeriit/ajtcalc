@@ -48,6 +48,18 @@ class Fonction extends Nombre {
         }else if(fonction.equals("echo")){
             e.compareArg(1);
             throw new NoSolveJustPrintException(argv[0]);
+        }else if(fonction.equals("ans")){ //On resort un élément de la stack de réponses
+            e.compareArg(0,1);
+            int n; //Le combientième de la pile
+            try{
+                n = Integer.parseInt(argv[0]);
+            }catch(NumberFormatException xyz){
+                n = 0;//Si on a pas de bon argument on lit le sommet de la pile
+            }
+            valeur = Stack.getNelem(n);
+        }else if(fonction.equals("exit")){
+            e.compareArg(0);
+            throw new NoSolveJustPrintException("","exit");
         }else{
             throw new DecodageException("Fonction non valide");
         }
@@ -67,18 +79,34 @@ class FonctionException extends DecodageException{ //Sert à vérifier le nombre
         if(argc != this.argc)
             throw this;
     }
+
+    public void compareArg(int argc1,int argc2) throws FonctionException{
+        if(argc != argc1 && argc != argc2)
+            throw this;
+    }
 }
 
 class NoSolveJustPrintException extends Exception { //Sert si on ne doit pas faire de calculs mais seulement afficher des trucs
     private String message;
+    private String specialMessage; //Sert, entre autres, à la fonction exit
 
     public NoSolveJustPrintException(String message){
         super();
+        this.message = message+"\n"; //Les messages ne doivet pas être affichés avec println
+    }
+
+    public NoSolveJustPrintException(String message,String specialMessage){
+        super();
         this.message = message;
+        this.specialMessage = specialMessage;
     }
 
     public String getMessage(){
         return message;
+    }
+
+    public String getSpecialMessage(){
+        return specialMessage;
     }
 }
 
