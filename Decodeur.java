@@ -101,7 +101,7 @@ class Decodeur extends ListExp {
                     }
                     argv[argc] = formule.substring(debutNomArg,pointeurFormule);
                     argc++;
-                    if(argc == 1 && argv[0].equals(""))
+                    if(argc == 1 && argv[0].equals("")) //Si on ne met rien du tout on a 0 arguments.
                         argc = 0;
                     addExpression(formule.substring(debutNomFonction,finNomFonction+1),argc,argv);
                     pointeurFormule ++;

@@ -1,4 +1,7 @@
-
+/*--------------------------------------------------------\
+|Cette classe contient de quoi faire du calcul symbolique.|
+|On trouve x tel que f(x) = 0 avec la méthode de Newton.  |
+\--------------------------------------------------------*/
 
 class Solveur {
 

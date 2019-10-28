@@ -17,9 +17,9 @@ class Shell {
             boolKeep = question();
     }
 
-    public Boolean question() { //Oppération élémentaire
+    public Boolean question() { //Opération élémentaire
         System.out.print(">");
-        String input = "";//Deffinition ici pour éviter les problèmes de def liés au try/catch
+        String input = "";//Definition ici pour éviter les problèmes de def liées au try/catch
         try{
             input = scanner.nextLine() ;//getUserInput
         }catch(java.util.NoSuchElementException e){

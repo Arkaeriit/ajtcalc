@@ -16,7 +16,14 @@ make && sudo make install
 
 ### Usage
 
-Usage: `ajtcalc [expression to solve]`
+Usage: 
+* `ajtcalc [expression to solve]` to solve the expression
+* `ajtcalc shell` to start a shell where you will be able to enter expressions
+* `ajtcalc file [filename]` to interprete a file where there is list of expressions
+* `ajtcalc help` to prit an user manual
+
+
+### Expressions
 
 The expression to solve is a sequence of number or sub-expression put between parentheses and operations such as: `3 x ( 4 + 1 )`
 
@@ -33,7 +40,7 @@ List of operations:
 
 For operation with more than one symbol such as multiplication you can use each one in the same expression.
 
-#### Number
+#### Numbers
 
 Number are typed in the decimal system. You can use decimal numbers.
 
@@ -41,16 +48,25 @@ Number are typed in the decimal system. You can use decimal numbers.
 
 To compute a sub-expression first you can put it between parentheses. You can use `(`, `{` or `[` to open parenthesis and `)`, `}` or `]` to close them.
 
-#### functions
+#### Functions
 
 You can apply function on numbers or expressions.
-To do that you have to write the name of the function then it's attributes between parentheses, bracket or curly brackets.
+To do that you have to write the name of the function then it's arguments between parentheses, bracket or curly brackets.
 List of functions:
 * abs(x) : return the absolute value of x
 * floor(x) : return x rounded down
 * ceil(x) : return x rounded up
 * max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
+* echo(message) : print message, ignore everything else
+* exit() : exit a shell
+* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be choosed
+* define(var,Exp1,Exp2) : replace every instance of `var` in `Exp2` by `Exp1`
+* solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
+
+#### Comments
+
+If you put a semi-colon after an expression to ignore everything comming after the semi-colon. You can use this to put comment on your operations.
 
 ### Examples
 
