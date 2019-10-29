@@ -79,7 +79,7 @@ Here is a list of some valid expressions:
 
 When using a shell or running a file thought an interpreter the previous answers are stored in a stack. You can access this with the function `ans`. `ans()` or `ans(0)` will give you the last calculated answer and `ans(n)` will give you the nth previous answer.
 
-If the previous expression had a mistake in it or just printed something with `echo()` it add a NaN on the stack.
+If the previous expression had a mistake in it or just printed something with `echo()` NaN will be added on the stack.
 
 If you start an Interpreter by giving an expression after the filename in augment the result of the expression will be on top of the stack.
 
@@ -126,4 +126,7 @@ Here is an example of the use of the shell where the stack is used:
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
 * stackSave() : save the state of the stack
 * stackBack() : revert to the previously saved state of the stack
+* quiet(Exp) : solve `Exp` and put the resut on the stack but don't print anything
+* q(Exp) : like quiet
+* run(filename) : interprete the file named filename, the results of each expressions from the file are put on the stack ans the results are printed
 

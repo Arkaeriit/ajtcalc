@@ -39,7 +39,7 @@ class Shell {
             if(e.getSpecialMessage().equals("exit")){
                 return false;
             }else if(e.getSpecialMessage().equals("noStack")){
-                //Rien à faire
+                System.out.print(e.getMessage());
             }else{ //tout va bien, on print
                 System.out.print(e.getMessage());
                 Stack.addElem(Double.NaN);

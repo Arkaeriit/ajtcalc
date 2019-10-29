@@ -5,6 +5,8 @@
 |opération.                                                        |
 \-----------------------------------------------------------------*/
 
+import java.io.FileNotFoundException;
+
 class Fonction extends Nombre {
     
     public Fonction(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException,NoSolveJustPrintException {
@@ -68,6 +70,27 @@ class Fonction extends Nombre {
             e.compareArg(0);
             Stack.stackBack();
             throw new NoSolveJustPrintException("","noStack");
+        }else if(fonction.equals("q") || fonction.equals("quiet")){
+            e.compareArg(1);
+            try{ //On met le résultat sur la stack
+                Nombre arg0 = new Nombre(argv[0]);
+                Stack.addElem(arg0.getValeur());
+            }catch(UnsolvableException exp){
+                 Stack.addElem(Double.NaN);
+            }
+            catch(NoSolveJustPrintException exp){
+                if(!exp.getSpecialMessage().equals("noStack"))
+                    Stack.addElem(Double.NaN);
+            }
+            throw new NoSolveJustPrintException("","noStack"); //On ne fait rien d'autre
+        }else if(fonction.equals("run")){
+            e.compareArg(1);
+            try{
+                Interpreteur interpreteur = new Interpreteur(argv[0]);
+                throw new NoSolveJustPrintException(interpreteur.toString(),"noStack");
+            }catch(FileNotFoundException exp){
+                throw new DecodageException("No such file as "+argv[0]);
+            }
         }else{
             throw new DecodageException("Fonction non valide");
         }

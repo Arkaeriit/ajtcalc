@@ -62,7 +62,7 @@ class Interpreteur {
                 if(e.getSpecialMessage().equals("exit")){
                     return false;
                 }else if(e.getSpecialMessage().equals("noStack")){
-                    //Rien à faire
+                    listReponses.add(e.getMessage());
                 }else{ //on print
                     listReponses.add(e.getMessage());
                     Stack.addElem(Double.NaN);
