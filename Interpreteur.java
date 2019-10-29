@@ -59,10 +59,14 @@ class Interpreteur {
                 Stack.addElem(Double.NaN);
                 listReponses.add(e.raison());
             }catch(NoSolveJustPrintException e){
-                if(e.getSpecialMessage().equals("exit"))
+                if(e.getSpecialMessage().equals("exit")){
                     return false;
-                listReponses.add(e.getMessage());
-                Stack.addElem(Double.NaN);
+                }else if(e.getSpecialMessage().equals("noStack")){
+                    //Rien à faire
+                }else{ //on print
+                    listReponses.add(e.getMessage());
+                    Stack.addElem(Double.NaN);
+                }
             }
         }
         return true;

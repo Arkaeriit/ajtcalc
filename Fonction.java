@@ -60,6 +60,14 @@ class Fonction extends Nombre {
         }else if(fonction.equals("exit")){
             e.compareArg(0);
             throw new NoSolveJustPrintException("","exit");
+        }else if(fonction.equals("stackSave")){
+            e.compareArg(0);
+            Stack.stackSave();
+            throw new NoSolveJustPrintException("","noStack");
+        }else if(fonction.equals("stackBack")){
+            e.compareArg(0);
+            Stack.stackBack();
+            throw new NoSolveJustPrintException("","noStack");
         }else{
             throw new DecodageException("Fonction non valide");
         }

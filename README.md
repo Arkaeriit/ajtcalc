@@ -59,7 +59,7 @@ List of basic functions:
 * max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
-* exit() : exit a shell or stop an interpreteur
+* exit() : exit a shell or stop an interpreter
 
 #### Comments
 
@@ -75,23 +75,44 @@ Here is a list of some valid expressions:
 * 2\*\*max(4,abs(-76\*2))
 * abs(floor(-3.5)\*3)
 
-### The stack 
+### The stack
 
-When using a shell or runing a file throught an interpreter the previous answers are stored in a stack. You can access this with the function `ans`. `ans()` or `ans(0)` will give you the last calculated answer and `ans(n)` will give you the nth previouss answer. 
+When using a shell or running a file thought an interpreter the previous answers are stored in a stack. You can access this with the function `ans`. `ans()` or `ans(0)` will give you the last calculated answer and `ans(n)` will give you the nth previous answer.
 
 If the previous expression had a mistake in it or just printed something with `echo()` it add a NaN on the stack.
 
-If you start an Interpretter by giving an expressin after the filename in agument the result of the expression will be on top of the stack.
+If you start an Interpreter by giving an expression after the filename in augment the result of the expression will be on top of the stack.
 
 #### Preserving the stack
 
-If you want to preserve the state of the stack you can use the function `stackSave()`. To revert the stack to the préviousely saved state you can use `stackBack()`. Theses two funtions don't change the stack in any other way.
+If you want to preserve the state of the stack, you can use the function `stackSave()`. To revert the stack to the previously saved state you can use `stackBack()`. Theses two functions don't change the stack in any other way. When you save the state of the stack, you can still access the values that where there before you saved. When you revert to the previous saved the changes on the stack made between the save and the revert are lost.
 
 #### Example
 
-todo
+Here is an example of the use of the shell where the stack is used:
 
-### List of all functions:
+```
+> 1+2
+3
+> 4*4
+16
+> ans(1)
+3
+> 7  
+7
+> stackSave()
+> 8*8
+64
+> 9*9     
+81
+> stackBack()
+> ans()
+7
+> ans(2)
+3
+```
+
+### List of all functions
 
 * abs(x) : return the absolute value of x
 * floor(x) : return x rounded down
@@ -99,11 +120,10 @@ todo
 * max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
 * echo(message) : print message, ignore everything else
-* exit() : exit a shell or stop an interpreteur
-* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be choosed
+* exit() : exit a shell or stop an interpreter
+* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be chosen
 * define(var,Exp1,Exp2) : replace every instance of `var` in `Exp2` by `Exp1`
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
-* stackSave() : s 
-* stackBack() :
-tocomplete
+* stackSave() : save the state of the stack
+* stackBack() : revert to the previously saved state of the stack
 

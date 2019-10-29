@@ -9,8 +9,14 @@ class Stack {
     private static Boolean isInit = false; //Indique si on est dans un mode où on a une stack
     private static int nombreElem = 0; //Indique le nombre d'élément
 
-    public static void enableStack(){
+    private static StackSave save; //Sert à sauvegarder des états de la stack
+
+    public static void enableStack(){ //Permet d'initialiser la stack
         isInit = true;
+        if(nombreElem == 0){ //On n'as jamais rien mis dedans
+            addElem(Double.NaN);
+            save = new StackSave(sommet);
+        }
     }
 
     public static void addElem(double elem){
@@ -37,6 +43,18 @@ class Stack {
         return tmp.valeur;
     }
 
+    public static void stackSave(){
+        StackSave tmp = save;
+        save = new StackSave(sommet);
+        save.nextSave = tmp;
+    }
+
+    public static void stackBack(){
+        sommet = save.savedElem;
+        save =  save.nextSave;
+    }
+
+
 }
 
 class StackElem {
@@ -49,3 +67,12 @@ class StackElem {
     }
 }
 
+class StackSave { //Sert à se remémorer des niveaux de la pile
+    public StackElem savedElem;
+    public StackSave nextSave;
+
+    public StackSave(StackElem savedElem){
+        this.savedElem = savedElem;
+        this.nextSave = this;
+    }
+}

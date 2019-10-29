@@ -36,10 +36,14 @@ class Shell {
             System.out.print(e.raison());
             Stack.addElem(Double.NaN);
         }catch(NoSolveJustPrintException e){
-            if(e.getSpecialMessage().equals("exit"))
+            if(e.getSpecialMessage().equals("exit")){
                 return false;
-            System.out.print(e.getMessage());
-            Stack.addElem(Double.NaN);
+            }else if(e.getSpecialMessage().equals("noStack")){
+                //Rien à faire
+            }else{ //tout va bien, on print
+                System.out.print(e.getMessage());
+                Stack.addElem(Double.NaN);
+            }
         }
         return true;
     }
