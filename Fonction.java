@@ -92,6 +92,7 @@ class NoSolveJustPrintException extends Exception { //Sert si on ne doit pas fai
 
     public NoSolveJustPrintException(String message){
         super();
+        this.specialMessage = "";
         this.message = message+"\n"; //Les messages ne doivet pas être affichés avec println
     }
 

@@ -2,6 +2,8 @@
 |Cette classe sert à décoder les arguments et à lacer les calculs.|
 \----------------------------------------------------------------*/
 
+import java.io.FileNotFoundException;
+
 class Interface{
     public static void main(String argv[]){
         if(argv.length < 1){
@@ -15,6 +17,16 @@ class Interface{
         if(argv[0].equals("shell") && argv.length == 1){
             Shell shell = new Shell();
             System.exit(0);
+        }
+        if(argv[0].equals("file") && argv.length == 2){
+            try{
+                Interpreteur inte = new Interpreteur(argv[1]);
+                System.out.println(inte);
+                System.exit(0);
+            }catch(FileNotFoundException e){
+                System.err.println("No such file as "+argv[1]);
+                System.exit(3);
+            }
         }
         String formule = ""; //Formule indique le contenu total des arguments que l'on donne
         for(int i=0;i < argv.length;i++){
@@ -42,6 +54,7 @@ class Interface{
         System.err.println("        ajtcalc help                    print an help message");
         System.err.println("        ajtcalc --help                  print an help message");
         System.err.println("        ajtcalc shell                   start a shell");
+        System.err.println("        ajtcalc file [filename]         interprete a file where there is a list of expressions");
     }
 
     private static void manuel(){

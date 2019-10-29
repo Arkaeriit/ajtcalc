@@ -1,3 +1,9 @@
+/*-----------------------------------------------------------------\
+|Cette classe permet de lire un ficher dans lequel on a indiqué des|
+|expressions à résoudre et de les interprétés, les réponses sont   |
+|mise sur la stack et lisible quand on fait appel à la methode     |
+|toString                                                          |
+\-----------------------------------------------------------------*/
 
 import java.io.File;
 import java.io.FileNotFoundException; 
@@ -6,13 +12,14 @@ import java.util.ArrayList;
 
 class Interpreteur {
 
-    ArrayList listFichier;
+    private ArrayList listFichier;
+    private ArrayList listReponses;
 
     public Interpreteur(String filename) throws FileNotFoundException{ //On lance l'exception ici car de toute façon un interprééteur est lié au fichier et n'a pas de sens sans
+        Stack.enableStack();
         File file = new File(filename);
         Scanner sc = new Scanner(file);
         listFichier = new ArrayList();
-        System.out.println("OK1");
         
         String tmp = "";
         while(sc.hasNextLine()){
@@ -29,6 +36,8 @@ class Interpreteur {
                 tmp = "";
             }
         }
+        listReponses = new ArrayList(listFichier.size()); //On parre du principe que l'on aura une réponse pour chaque expression
+        interprete();
     }   
 
     private static void appNempty(ArrayList list,String str){ //Permet de trier les chaines vides
@@ -36,12 +45,35 @@ class Interpreteur {
             list.add(str);
     }
 
-    public static void main(String argv[]){
-        try{
-        Interpreteur inte = new Interpreteur("test");
-        System.out.println(inte.listFichier);
-        }catch(FileNotFoundException e){}
-    }    
+    private Boolean interprete(){ //On calcule toute les valeuurs de listFichier et on met le résultat dans listReponses
+        for(int i=0;i<listFichier.size();i++){
+            try{
+                String str = listFichier.get(i).toString(); //On explicite le type de l'élem de la liste
+                Nombre valeurIn = new Nombre(str);
+                Stack.addElem(valeurIn.getValeur());
+                if(Math.round(valeurIn.getValeur()) == valeurIn.getValeur())
+                    listReponses.add(Math.round(valeurIn.getValeur())+"\n");
+                else
+                    listReponses.add(valeurIn.getValeur()+"\n");
+            }catch(UnsolvableException e){
+                Stack.addElem(Double.NaN);
+                listReponses.add(e.raison());
+            }catch(NoSolveJustPrintException e){
+                if(e.getSpecialMessage().equals("exit"))
+                    return false;
+                listReponses.add(e.getMessage());
+                Stack.addElem(Double.NaN);
+            }
+        }
+        return true;
+    }
+
+    public String toString(){
+        String ret = "";
+        for(int i=0;i<listReponses.size();i++)
+            ret = ret + listReponses.get(i);
+        return ret;
+    }
 
 }
 
