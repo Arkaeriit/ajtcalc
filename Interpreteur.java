@@ -12,14 +12,14 @@ import java.util.ArrayList;
 
 class Interpreteur {
 
-    private ArrayList listFichier;
-    private ArrayList listReponses;
+    private ArrayList<String> listFichier;
+    private ArrayList<String> listReponses;
 
     public Interpreteur(String filename) throws FileNotFoundException{ //On lance l'exception ici car de toute façon un interprééteur est lié au fichier et n'a pas de sens sans
         Stack.enableStack();
         File file = new File(filename);
         Scanner sc = new Scanner(file);
-        listFichier = new ArrayList();
+        listFichier = new ArrayList<String>();
         
         String tmp = "";
         while(sc.hasNextLine()){
@@ -36,11 +36,11 @@ class Interpreteur {
                 tmp = "";
             }
         }
-        listReponses = new ArrayList(listFichier.size()); //On parre du principe que l'on aura une réponse pour chaque expression
+        listReponses = new ArrayList<String>(listFichier.size()); //On parre du principe que l'on aura une réponse pour chaque expression
         interprete();
     }   
 
-    private static void appNempty(ArrayList list,String str){ //Permet de trier les chaines vides
+    private static void appNempty(ArrayList<String> list,String str){ //Permet de trier les chaines vides
         if(!str.equals(""))
             list.add(str);
     }
