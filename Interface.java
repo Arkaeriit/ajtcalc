@@ -1,6 +1,6 @@
-/*----------------------------------------------------------------\
-|Cette classe sert à décoder les arguments et à lacer les calculs.|
-\----------------------------------------------------------------*/
+/*-----------------------------------------------------------------\
+|Cette classe sert à décoder les arguments et à lancer les calculs.|
+\-----------------------------------------------------------------*/
 
 import java.io.FileNotFoundException;
 
@@ -18,8 +18,20 @@ class Interface{
             Shell shell = new Shell();
             System.exit(0);
         }
-        if(argv[0].equals("file") && argv.length == 2){
+        if(argv[0].equals("file") && argv.length >= 2){
             try{
+                if(argv.length > 2){ //Une expression en argument
+                    String argExp = "";
+                    for(int i=2;i<argv.length;i++)
+                        argExp = argExp+argv[i];
+                    Stack.enableStack();
+                    try{
+                        Nombre valeurTop = new Nombre(argExp);
+                        Stack.addElem(valeurTop.getValeur());
+                    }catch(Exception e){ //Si il y a l'ombre d'um problème on met NaN dans la stack
+                        Stack.addElem(Double.NaN);
+                    }
+                }
                 Interpreteur inte = new Interpreteur(argv[1]);
                 System.out.println(inte);
                 System.exit(0);

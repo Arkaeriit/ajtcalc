@@ -19,7 +19,7 @@ make && sudo make install
 Usage: 
 * `ajtcalc [expression to solve]` to solve the expression
 * `ajtcalc shell` to start a shell where you will be able to enter expressions
-* `ajtcalc file [filename]` to interprete a file where there is list of expressions
+* `ajtcalc file [filename] <expressionw>` to interprete a file where there is list of expressions
 * `ajtcalc help` to prit an user manual
 
 
@@ -48,27 +48,24 @@ Number are typed in the decimal system. You can use decimal numbers.
 
 To compute a sub-expression first you can put it between parentheses. You can use `(`, `{` or `[` to open parenthesis and `)`, `}` or `]` to close them.
 
-#### Functions
+#### Basic Functions
 
 You can apply function on numbers or expressions.
 To do that you have to write the name of the function then it's arguments between parentheses, bracket or curly brackets.
-List of functions:
+List of basic functions:
 * abs(x) : return the absolute value of x
 * floor(x) : return x rounded down
 * ceil(x) : return x rounded up
 * max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
-* echo(message) : print message, ignore everything else
-* exit() : exit a shell
-* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be choosed
-* define(var,Exp1,Exp2) : replace every instance of `var` in `Exp2` by `Exp1`
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
+* exit() : exit a shell or stop an interpreteur
 
 #### Comments
 
 If you put a semi-colon after an expression to ignore everything comming after the semi-colon. You can use this to put comment on your operations.
 
-### Examples
+#### Examples
 
 Here is a list of some valid expressions:
 * ( 3 * (4.0 + 0.01)) ^3
@@ -77,4 +74,36 @@ Here is a list of some valid expressions:
 * 4\*10\*\*1+2x10^0
 * 2\*\*max(4,abs(-76\*2))
 * abs(floor(-3.5)\*3)
+
+### The stack 
+
+When using a shell or runing a file throught an interpreter the previous answers are stored in a stack. You can access this with the function `ans`. `ans()` or `ans(0)` will give you the last calculated answer and `ans(n)` will give you the nth previouss answer. 
+
+If the previous expression had a mistake in it or just printed something with `echo()` it add a NaN on the stack.
+
+If you start an Interpretter by giving an expressin after the filename in agument the result of the expression will be on top of the stack.
+
+#### Preserving the stack
+
+If you want to preserve the state of the stack you can use the function `stackSave()`. To revert the stack to the préviousely saved state you can use `stackBack()`. Theses two funtions don't change the stack in any other way.
+
+#### Example
+
+todo
+
+### List of all functions:
+
+* abs(x) : return the absolute value of x
+* floor(x) : return x rounded down
+* ceil(x) : return x rounded up
+* max(x,y) : return the biggest number between x and y
+* min(x,y) : return the smallest number between x and y
+* echo(message) : print message, ignore everything else
+* exit() : exit a shell or stop an interpreteur
+* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be choosed
+* define(var,Exp1,Exp2) : replace every instance of `var` in `Exp2` by `Exp1`
+* solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
+* stackSave() : s 
+* stackBack() :
+tocomplete
 
