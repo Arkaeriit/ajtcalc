@@ -77,3 +77,4 @@ class NoProgressNewtonException extends Exception {
         this.valeurBlocante = valeurBlocante;
     }
 }
+

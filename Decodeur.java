@@ -157,17 +157,3 @@ class Decodeur extends ListExp {
 
 }
 
-class DecodageException extends Exception { //Permet de voir si on a une erreur de lecture
-    public String problème;
-
-    public DecodageException() {}
-    public DecodageException(String s){
-        super(s);
-        problème = s;
-    }
-
-    public String raison(){
-        return "Reason : "+problème;
-    }
-}
-

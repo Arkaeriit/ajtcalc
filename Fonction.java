@@ -91,6 +91,15 @@ class Fonction extends Nombre {
             }catch(FileNotFoundException exp){
                 throw new DecodageException("No such file as "+argv[0]);
             }
+        }else if(fonction.equals("if")){
+            e.compareArg(3);
+            Nombre arg0 = new Nombre(argv[0]);
+            Nombre ret;
+            if(arg0.getValeur() > 0)
+                ret = new Nombre(argv[2]);
+            else
+                ret = new Nombre(argv[1]);
+            valeur = ret.getValeur();
         }else{
             throw new DecodageException("Fonction non valide");
         }
@@ -114,31 +123,6 @@ class FonctionException extends DecodageException{ //Sert à vérifier le nombre
     public void compareArg(int argc1,int argc2) throws FonctionException{
         if(argc != argc1 && argc != argc2)
             throw this;
-    }
-}
-
-class NoSolveJustPrintException extends Exception { //Sert si on ne doit pas faire de calculs mais seulement afficher des trucs
-    private String message;
-    private String specialMessage; //Sert, entre autres, à la fonction exit
-
-    public NoSolveJustPrintException(String message){
-        super();
-        this.specialMessage = "";
-        this.message = message+"\n"; //Les messages ne doivet pas être affichés avec println
-    }
-
-    public NoSolveJustPrintException(String message,String specialMessage){
-        super();
-        this.message = message;
-        this.specialMessage = specialMessage;
-    }
-
-    public String getMessage(){
-        return message;
-    }
-
-    public String getSpecialMessage(){
-        return specialMessage;
     }
 }
 
