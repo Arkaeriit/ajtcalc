@@ -130,4 +130,6 @@ Here is an example of the use of the shell where the stack is used:
 * q(Exp) : like quiet
 * run(filename) : interprete the file named filename, the results of each expressions from the file are put on the stack ans the results are printed
 * if(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is above 0 the function evaluate Exp3, if Exp1 is equal or below 0 it evaluate Exp2
+* input(promp) : ask the user for input, asking with the desired promt or no prompt if none is given
+* disp() : display all the answer of the interpreter so far
 

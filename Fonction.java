@@ -6,6 +6,7 @@
 \-----------------------------------------------------------------*/
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 class Fonction extends Nombre {
     
@@ -100,6 +101,24 @@ class Fonction extends Nombre {
             else
                 ret = new Nombre(argv[1]);
             valeur = ret.getValeur();
+        }else if(fonction.equals("input")){
+            e.compareArg(0,1);
+            Scanner scanner = new Scanner(System.in);
+            String promp = "";
+            if(argc == 1)
+                promp = argv[0];
+            System.out.print(promp);
+            String input = "";
+            try{
+                input = scanner.nextLine();
+            }catch(java.util.NoSuchElementException exp){
+                throw new NoSolveJustPrintException("","exit");
+            }
+            Nombre ret = new Nombre(input);
+            valeur = ret.getValeur();
+        }else if(fonction.equals("disp")){
+            e.compareArg(0);
+            throw new NoSolveJustPrintException("","disp");
         }else{
             throw new DecodageException("Fonction non valide");
         }

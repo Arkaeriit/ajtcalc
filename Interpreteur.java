@@ -63,6 +63,9 @@ class Interpreteur {
                     return false;
                 }else if(e.getSpecialMessage().equals("noStack")){
                     listReponses.add(e.getMessage());
+                }else if(e.getSpecialMessage().equals("disp")){
+                    System.out.print(this.toString());
+                    listReponses.clear();
                 }else{ //on print
                     listReponses.add(e.getMessage());
                     Stack.addElem(Double.NaN);

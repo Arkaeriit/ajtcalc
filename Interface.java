@@ -15,8 +15,14 @@ class Interface{
             System.exit(0);
         }
         if(argv[0].equals("shell") && argv.length == 1){
-            Shell shell = new Shell();
-            System.exit(0);
+            try{
+                Interpreteur inte = new Interpreteur("/usr/local/share/ajtcalc/shell.ajt");
+                System.out.print(inte);
+                System.exit(0);
+            }catch(FileNotFoundException e){
+                System.err.println("shell.ajt not found, the instalation must be made correctely.");
+                System.exit(3);
+            }
         }
         if(argv[0].equals("file") && argv.length >= 2){
             try{
@@ -33,7 +39,7 @@ class Interface{
                     }
                 }
                 Interpreteur inte = new Interpreteur(argv[1]);
-                System.out.println(inte);
+                System.out.print(inte);
                 System.exit(0);
             }catch(FileNotFoundException e){
                 System.err.println("No such file as "+argv[1]);
