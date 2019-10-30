@@ -59,6 +59,8 @@ List of basic functions:
 * max(x,y) : return the biggest number between x and y
 * min(x,y) : return the smallest number between x and y
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
+* e() : return the constant e, Euler's number
+* pi() : return the number pi
 * exit() : exit a shell or stop an interpreter
 
 #### Comments
@@ -136,6 +138,8 @@ Inside the example folder is a program that ask the user for three numbers and t
 * ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be chosen
 * define(var,Exp1,Exp2) : replace every instance of `var` in `Exp2` by `Exp1`
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
+* e() : return the constant e, Euler's number
+* pi() : return the number pi
 * stackSave() : save the state of the stack
 * stackBack() : revert to the previously saved state of the stack
 * stackBack(Exp1,...,ExpN) : revert to the previously saved state of the stack and put the evaluation of each arguments on to of the stack, at the end the last argument will be on top of the stack

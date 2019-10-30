@@ -114,6 +114,8 @@ class Interface{
         System.out.println("        * max(x,y) : return the biggest number between x and y");
         System.out.println("        * min(x,y) : return the smallest number between x and y");
         System.out.println("        * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between min and max");
+        System.out.println("        * e() : return the constant e, Euler's number");
+        System.out.println("        * pi() : return the number pi);
         System.out.println("        * exit() : exit a shell or stop an interpreter");
         System.out.println("");
         System.out.println("    Comments:");
@@ -177,6 +179,8 @@ class Interface{
         System.out.println("* ans(n) : in a shell or in an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be chosen");
         System.out.println("* define(var,Exp1,Exp2) : replace every instance of var in Exp2 by Exp1");
         System.out.println("* solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between min and max");
+        System.out.println("* e() : return the constant e, Euler's number");
+        System.out.println("* pi() : return the number pi);
         System.out.println("* stackSave() : save the state of the stack");
         System.out.println("* stackBack() : revert to the previously saved state of the stack");
         System.out.println("* stackBack(Exp1,...,ExpN) : revert to the previously saved state of the stack and put the evaluation of each arguments on to of the stack, at the end the last argument will be on top of the stack");

@@ -5,7 +5,6 @@
 |opération.                                                        |
 \-----------------------------------------------------------------*/
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class Fonction extends Nombre {
@@ -96,7 +95,7 @@ class Fonction extends Nombre {
             try{
                 Interpreteur interpreteur = new Interpreteur(argv[0]);
                 throw new NoSolveJustPrintException(interpreteur.toString(),"noStack");
-            }catch(FileNotFoundException exp){
+            }catch(java.io.FileNotFoundException exp){
                 throw new DecodageException("No such file as "+argv[0]);
             }
         }else if(fonction.equals("ifBE")){
@@ -138,6 +137,12 @@ class Fonction extends Nombre {
         }else if(fonction.equals("showStack")){
             e.compareArg(0);
             throw new NoSolveJustPrintException(Stack.showStack(),"noStack");
+        }else if(fonction.equals("e")){
+            e.compareArg(0);
+            valeur = Math.E;
+        }else if(fonction.equals("pi")){
+            e.compareArg(0);
+            valeur = Math.PI;
         }else{
             throw new DecodageException("Fonction non valide");
         }
