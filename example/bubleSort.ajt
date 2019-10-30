@@ -1,0 +1,9 @@
+stackSave() ;This function sort the 3 top elements from the stack
+run(buble.ajt) ;sorting 2 top elements
+ans(4) ;other elements
+run(buble.ajt);The smallest element is on top
+ans(1);Bigger element from 2nd buble
+ans(5);Bigger element from 1st buble
+run(buble.ajt)
+stackBack(ans(4),ans(0),ans(1)) ;the sorted elements are returned
+

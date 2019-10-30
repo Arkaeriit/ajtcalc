@@ -1,0 +1,4 @@
+stackSave() ; This functions put on to of the stack the last two éléments of the stack but sorted
+if(ans(0) - ans(1),ans(0),ans(1))
+if(ans(2) - ans(1),ans(1),ans(2))
+stackBack(ans(0),ans(1)) ;the two elements are sorted. The smallest is on top of the stack, the biger bellow

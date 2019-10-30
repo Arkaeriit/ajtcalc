@@ -1,0 +1,11 @@
+q(input(First number : ));We ask for three number and we return them sorted
+q(input(Second number : ))
+q(input(third number : ))
+q(run(bubleSort.ajt)) ;in the file bubleSort.ajt is the function that will sort them
+echo(Biggest element:) ;then the results are printed
+ans(1)
+echo(Middle element:)
+ans(4)
+echo(Smallest element:)
+ans(7)
+
