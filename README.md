@@ -98,12 +98,12 @@ Here is an example of the use of the shell where the stack is used:
 16
 > ans(1)
 3
-> 7  
+> 7
 7
 > stackSave()
 > 8*8
 64
-> 9*9     
+> 9*9
 81
 > stackBack()
 > ans()
@@ -111,6 +111,18 @@ Here is an example of the use of the shell where the stack is used:
 > ans(2)
 3
 ```
+
+### Programming with ajtcalc
+
+Even if I don't advice it becaus it is quite tidious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call it's position on the stack. You can call a function you wrote with the `run` function. You can do conditional branching with the functions `ifBE` and `ifGT`. You should hide the calculations that aren't interesting with the functions `q` ou `quiet`.
+
+#### Creating a function
+
+To create a function, you must write it in a new file. You should start it with `stackSave()` to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with `stackBack(Exp1,...,ExpN)` where the content of the stackBack is what your function return. To call your function from a file you mist put it's argument on top of the stack and then call it with `run(nameOfTheFileOfYourFunction)`.
+
+#### Example
+
+Inside the example folder is a program that ask the user for three numbers and then return them sorted. You can try it by typing `ajtcalc file main.ajt` inside of the example folder.
 
 ### List of all functions
 
@@ -129,9 +141,10 @@ Here is an example of the use of the shell where the stack is used:
 * stackBack(Exp1,...,ExpN) : revert to the previously saved state of the stack and put the evaluation of each arguments on to of the stack, at the end the last argument will be on top of the stack
 * quiet(Exp) : solve `Exp` and put the resut on the stack but don't print anything
 * q(Exp) : like quiet
-* run(filename) : interprete the file named filename, the results of each expressions from the file are put on the stack ans the results are printed
-* if(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is above 0 the function evaluate Exp3, if Exp1 is equal or below 0 it evaluate Exp2
-* input(promp) : ask the user for input, asking with the desired promt or no prompt if none is given
+* run(filename) : interpret the file named filename, the results of each expression from the file are put on the stack ans the results are printed
+* ifBE(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is above 0 the function evaluate Exp3, if Exp1 is equal or below 0 it evaluate Exp2
+* ifGT(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is below or equal to 0 the function evaluate Exp3, if Exp1 is above it evaluate Exp2
+* input(prompt) : ask the user for input, asking with the desired prompt or no prompt if none is given
 * disp() : display all the answer of the interpreter so far
-* showStack() : show all the content of the stack, usefull for debugging, the stack is not changed
+* showStack() : show all the content of the stack, useful for debugging, the stack is not changed
 

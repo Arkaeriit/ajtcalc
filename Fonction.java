@@ -99,11 +99,20 @@ class Fonction extends Nombre {
             }catch(FileNotFoundException exp){
                 throw new DecodageException("No such file as "+argv[0]);
             }
-        }else if(fonction.equals("if")){
+        }else if(fonction.equals("ifBE")){
             e.compareArg(3);
             Nombre arg0 = new Nombre(argv[0]);
             Nombre ret;
             if(arg0.getValeur() > 0)
+                ret = new Nombre(argv[2]);
+            else
+                ret = new Nombre(argv[1]);
+            valeur = ret.getValeur();
+        }else if(fonction.equals("ifGT")){
+            e.compareArg(3);
+            Nombre arg0 = new Nombre(argv[0]);
+            Nombre ret;
+            if(arg0.getValeur() <= 0)
                 ret = new Nombre(argv[2]);
             else
                 ret = new Nombre(argv[1]);
