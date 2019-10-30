@@ -68,8 +68,15 @@ class Fonction extends Nombre {
             Stack.stackSave();
             throw new NoSolveJustPrintException("","noStack");
         }else if(fonction.equals("stackBack")){
-            e.compareArg(0);
-            Stack.stackBack();
+            double[] tmp = new double[argc]; //On y stocke les valeurs que l'on va mettre sur la stack
+            for(int i=0;i<argc;i++){ //On met un truc sur la stack
+                Nombre ret = new Nombre(argv[i]);
+                tmp[i] = ret.getValeur();
+            }
+            Stack.stackBack(); //On restaure la stack
+            for(int i=0;i<argc;i++){ //On y met les éléments que l'on veut
+                Stack.addElem(tmp[i]);
+            }
             throw new NoSolveJustPrintException("","noStack");
         }else if(fonction.equals("q") || fonction.equals("quiet")){
             e.compareArg(1);
@@ -119,6 +126,9 @@ class Fonction extends Nombre {
         }else if(fonction.equals("disp")){
             e.compareArg(0);
             throw new NoSolveJustPrintException("","disp");
+        }else if(fonction.equals("showStack")){
+            e.compareArg(0);
+            throw new NoSolveJustPrintException(Stack.showStack(),"noStack");
         }else{
             throw new DecodageException("Fonction non valide");
         }

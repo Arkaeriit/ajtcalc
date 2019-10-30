@@ -126,10 +126,12 @@ Here is an example of the use of the shell where the stack is used:
 * solve(var,Exp,min,max) : solve Exp(var) = 0 with var being between `min` and `max`
 * stackSave() : save the state of the stack
 * stackBack() : revert to the previously saved state of the stack
+* stackBack(Exp1,...,ExpN) : revert to the previously saved state of the stack and put the evaluation of each arguments on to of the stack, at the end the last argument will be on top of the stack
 * quiet(Exp) : solve `Exp` and put the resut on the stack but don't print anything
 * q(Exp) : like quiet
 * run(filename) : interprete the file named filename, the results of each expressions from the file are put on the stack ans the results are printed
 * if(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is above 0 the function evaluate Exp3, if Exp1 is equal or below 0 it evaluate Exp2
 * input(promp) : ask the user for input, asking with the desired promt or no prompt if none is given
 * disp() : display all the answer of the interpreter so far
+* showStack() : show all the content of the stack, usefull for debugging
 
