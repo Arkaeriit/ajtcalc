@@ -1,4 +1,4 @@
-input(>)
-disp()
-run(/usr/local/share/ajtcalc/shell.ajt)
+input(>) ;We ask the user for input whith a nice prompt
+disp() ;We show the result of the previous expression
+run(/usr/local/share/ajtcalc/shell.ajt) ;We restart the shell
 
