@@ -19,8 +19,8 @@ make && sudo make install
 Usage: 
 * `ajtcalc [expression to solve]` to solve the expression
 * `ajtcalc shell` to start a shell where you will be able to enter expressions
-* `ajtcalc file [filename] <expressionw>` to interprete a file where there is list of expressions
-* `ajtcalc help` to prit an user manual
+* `ajtcalc file [filename] <expressionw>` to interpret a file where there is a list of expressions
+* `ajtcalc help` to print a user manual
 
 
 ### Expressions
@@ -32,17 +32,17 @@ Spaces are ignored, so you can use them to make your expression easier to read w
 #### Operations
 
 List of operations:
-* addition, symbolised by +
-* substation, symbolised by -
-* multiplication, symbolised by \* or x
-* division, symbolised by /
-* exponentiation, symbolised by ^ or \*\*
+* addition, symbolized by +
+* substation, symbolized by -
+* multiplication, symbolized by \* or x
+* division, symbolized by /
+* exponentiation, symbolized by ^ or \*\*
 
-For operation with more than one symbol such as multiplication you can use each one in the same expression.
+For operation with more than one symbol such as multiplication, you can use each one in the same expression.
 
 #### Numbers
 
-Number are typed in the decimal system. You can use decimal numbers.
+Numbers are typed in the decimal system. You can use decimal numbers.
 
 #### Parenthesis
 
@@ -50,7 +50,7 @@ To compute a sub-expression first you can put it between parentheses. You can us
 
 #### Basic Functions
 
-You can apply function on numbers or expressions.
+You can apply functions on numbers or expressions.
 To do that you have to write the name of the function then it's arguments between parentheses, bracket or curly brackets.
 List of basic functions:
 * abs(x) : return the absolute value of x
@@ -65,7 +65,7 @@ List of basic functions:
 
 #### Comments
 
-If you put a semi-colon after an expression to ignore everything comming after the semi-colon. You can use this to put comment on your operations.
+If you put a semi-colon after an expression to ignore everything coming after the semi-colon. You can use this to put a comment on your operations.
 
 #### Examples
 
@@ -87,7 +87,7 @@ If you start an Interpreter by giving an expression after the filename in augmen
 
 #### Preserving the stack
 
-If you want to preserve the state of the stack, you can use the function `stackSave()`. To revert the stack to the previously saved state you can use `stackBack()`. Theses two functions don't change the stack in any other way. When you save the state of the stack, you can still access the values that where there before you saved. When you revert to the previous saved the changes on the stack made between the save and the revert are lost.
+If you want to preserve the state of the stack, you can use the function `stackSave()`. To revert the stack to the previously saved state you can use `stackBack()`. Theses two functions don't change the stack in any other way. When you save the state of the stack, you can still access the values that were there before you saved. When you revert to the previous saved the changes on the stack made between the save and the revert are lost.
 
 #### Example
 
@@ -116,15 +116,15 @@ Here is an example of the use of the shell where the stack is used:
 
 ### Programming with ajtcalc
 
-Even if I don't advice it becaus it is quite tidious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call it's position on the stack. You can call a function you wrote with the `run` function. You can do conditional branching with the functions `ifBE` and `ifGT`. You should hide the calculations that aren't interesting with the functions `q` ou `quiet`.
+Even if I don't advise it because it is quite tedious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call its position on the stack. You can call a function you wrote with the `run` function. You can do conditional branching with the functions `ifBE` and `ifGT`. You should hide the calculations that aren't interesting with the functions `q` ou `quiet`.
 
 #### Creating a function
 
-To create a function, you must write it in a new file. You should start it with `stackSave()` to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with `stackBack(Exp1,...,ExpN)` where the content of the stackBack is what your function return. To call your function from a file you mist put it's argument on top of the stack and then call it with `run(nameOfTheFileOfYourFunction)`.
+To create a function, you must write it in a new file. You should start it with `stackSave()` to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with `stackBack(Exp1,...,ExpN)` where the content of the stackBack is what your function return. To call your function from a file you mist put its argument on top of the stack and then call it with `run(nameOfTheFileOfYourFunction)`.
 
 #### Example
 
-Inside the example folder is a program that ask the user for three numbers and then return them sorted. You can try it by typing `ajtcalc file main.ajt` inside of the example folder.
+Inside the example folder is a program that asks the user for three numbers and then returns them sorted. You can try it by typing `ajtcalc file main.ajt` inside of the example folder.
 
 ### List of all functions
 
