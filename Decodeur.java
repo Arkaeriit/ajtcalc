@@ -150,9 +150,10 @@ class Decodeur extends ListExp {
                 nombre = true;
             } //EndIf        
         }//End while
-        if(nombre){
+        if(size() == 0)
+            throw new DecodageException("Empty expression");
+        if(nombre)
             throw new DecodageException("The expression end with an operation symbol"); //Si on termine pas par un nombre c'est qu'il y a une erreur   
-        }
     }
 
 }
