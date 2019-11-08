@@ -2,109 +2,59 @@
 |Cette classe permet de créer et de modifier des listes d'Expressions|
 \-------------------------------------------------------------------*/
 
+import java.util.ArrayList;
+
 class ListExp {
-    public Expression[] tabExp;
-    private Boolean initTabl; //Indique si tabExp est vide ou pas
+    public ArrayList<Expression> tabExp;
 
     public ListExp(){
-        initTabl = false;
+        tabExp = new ArrayList<Expression>(10);
     }
 
-    public ListExp(Expression[] tabExp){
-        if(tabExp.length > 0){
-            this.tabExp = tabExp;
-            initTabl = true;
-        }else{
-            initTabl = false;
-        }
+    public ListExp(ArrayList<Expression> tabExp){
+        this.tabExp = tabExp;
     }
 
     public String toString(){
         String ret = "";
-        for(int i=0;i<tabExp.length;i++){
+        for(int i=0;i<tabExp.size();i++){
             if(i%2 == 0)
-                ret = ret.concat(String.format("%d",tabExp[i].getValeur()));
+                ret = ret + tabExp.get(i).getValeur();
             else
-                ret = ret.concat(String.format("%c",tabExp[i].getSymbole()));
+                ret = ret.concat(String.format("%c",tabExp.get(i).getSymbole()));
         }
         return ret;
     }
 
     protected void addExpression(char symbole){
-        if(initTabl){
-            Expression[] tmp = new Expression[ tabExp.length + 1 ];
-            for(int i=0;i < tabExp.length;i++){
-                tmp[i] = tabExp[i];
-            }
-            tmp[tabExp.length] = new Operation(symbole);
-            tabExp = tmp;
-        }else{
-            System.err.println("Erreur impossible");
-        }
+        tabExp.add(new Operation(symbole));
     }
 
     protected void addExpression(double nombre){
-        if(initTabl){
-            Expression[] tmp = new Expression[ tabExp.length + 1 ];
-            for(int i=0;i < tabExp.length;i++){
-                tmp[i] = tabExp[i];
-            }
-            tmp[tabExp.length] = new Nombre(nombre);
-            tabExp = tmp;
-        }else{
-            tabExp = new Expression[1];
-            tabExp[0] = new Nombre(nombre);
-            initTabl = true;
-        }
+        tabExp.add(new Nombre(nombre));
     }
 
     protected void addExpression(String formule) throws UnsolvableException,NoSolveJustPrintException {
-        if(initTabl){
-            Expression[] tmp = new Expression[ tabExp.length + 1 ];
-            for(int i=0;i < tabExp.length;i++){
-                tmp[i] = tabExp[i];
-            }
-            tmp[tabExp.length] = new Nombre(formule);
-            tabExp = tmp;
-        }else{
-            tabExp = new Expression[1];
-            tabExp[0] = new Nombre(formule);
-            initTabl = true;
-        }
+        tabExp.add(new Nombre(formule));
     }
 
     protected void addExpression(String fonction,int argc,String[] argv) throws DecodageException,UnsolvableException,NoSolveJustPrintException {
-        if(initTabl){
-            Expression[] tmp = new Expression[ tabExp.length + 1 ];
-            for(int i=0;i < tabExp.length;i++){
-                tmp[i] = tabExp[i];
-            }
-            tmp[tabExp.length] = new Fonction(fonction,argc,argv);
-            tabExp = tmp;
-        }else{
-            tabExp = new Expression[1];
-            tabExp[0] = new Fonction(fonction,argc,argv);
-            initTabl = true;
-        }
+        tabExp.add(new Fonction(fonction,argc,argv));
     }
 
     protected void init(){
-        initTabl = false;
+        tabExp.clear();
     }
 
     protected int nombreOperations(){
-        if(initTabl){
-            return (tabExp.length - 1)/2;
-        }else{
-            return 0;
-        }
+        return (tabExp.size() - 1)/2;
     }
 
     protected char getNSymbole(int i){
-        return tabExp[2 * i + 1].getSymbole();
+        return tabExp.get(2 * i + 1).getSymbole();
     }
 
     protected double getNValeur(int i){
-        return tabExp[2 * i].getValeur();
+        return tabExp.get(2 * i).getValeur();
     }
 }

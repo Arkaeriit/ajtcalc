@@ -3,19 +3,21 @@
 mathématique représentée par une liste d'expressions.     |
 \--------------------------------------------------------*/
 
+import java.util.ArrayList;
+
 class Calculette extends ListExp {
 
     public double valeur;
     private ListExp tabExpOrigine;
 
-    public Calculette(Expression[] tabExp){
+    public Calculette(ArrayList<Expression> tabExp){
         tabExpOrigine = new ListExp(tabExp);
         init();
         valeur = 0;
     }
 
     public double calcul(){
-        double tempo = tabExpOrigine.tabExp[0].getValeur();//Dans un premier temps on calcule les exponentiations
+        double tempo = tabExpOrigine.getNValeur(0);//Dans un premier temps on calcule les exponentiations
         for(int i=0;i<tabExpOrigine.nombreOperations();i++){
             if(tabExpOrigine.getNSymbole(i) == '^'){
                 tempo = Math.pow(tempo, tabExpOrigine.getNValeur(i+1));
@@ -26,10 +28,10 @@ class Calculette extends ListExp {
             }
         }
         addExpression(tempo);
-        tabExpOrigine.tabExp = tabExp;
+        tabExpOrigine.tabExp = new ArrayList<Expression>(tabExp);
         init();
 
-        tempo = tabExpOrigine.tabExp[0].getValeur();//Puis les divisions/multiplucations
+        tempo = tabExpOrigine.getNValeur(0);//Puis les divisions/multiplucations
         for(int i=0;i<tabExpOrigine.nombreOperations();i++){
             if(tabExpOrigine.getNSymbole(i) == 'x'){
                 tempo = tempo * tabExpOrigine.getNValeur(i+1);
@@ -42,10 +44,10 @@ class Calculette extends ListExp {
             }
         }
         addExpression(tempo);
-        tabExpOrigine.tabExp = tabExp;
+        tabExpOrigine.tabExp = new ArrayList<Expression>(tabExp);
         init();
         
-        tempo = tabExpOrigine.tabExp[0].getValeur();//Puis les additions/soustraction
+        tempo = tabExpOrigine.getNValeur(0);//Puis les additions/soustraction
         for(int i=0;i<tabExpOrigine.nombreOperations();i++){
             if(tabExpOrigine.getNSymbole(i) == '+'){
                 tempo = tempo + tabExpOrigine.getNValeur(i+1);
@@ -58,9 +60,8 @@ class Calculette extends ListExp {
             }
         }
         addExpression(tempo);
-        return tabExp[0].getValeur();
+        return getNValeur(0);
     }
 
-
-
 }
+
