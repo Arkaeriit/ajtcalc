@@ -25,4 +25,6 @@ class NoSolveJustPrintException extends Exception { //Sert si on ne doit pas fai
     public String getSpecialMessage(){
         return specialMessage;
     }
+
 }
+

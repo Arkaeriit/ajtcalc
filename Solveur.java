@@ -66,6 +66,7 @@ class Solveur {
     public double getValeur(){
         return result;
     }
+
 }
 
 class NoProgressNewtonException extends Exception {
@@ -76,5 +77,6 @@ class NoProgressNewtonException extends Exception {
         //System.out.println("!!! "+valeurBlocante);
         this.valeurBlocante = valeurBlocante;
     }
+
 }
 

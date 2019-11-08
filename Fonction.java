@@ -147,6 +147,7 @@ class Fonction extends Nombre {
             throw new DecodageException("Fonction non valide");
         }
     }  
+
 }
 
 class FonctionException extends DecodageException{ //Sert à vérifier le nombre d'arguments des fonctions
@@ -167,5 +168,6 @@ class FonctionException extends DecodageException{ //Sert à vérifier le nombre
         if(argc != argc1 && argc != argc2)
             throw this;
     }
+
 }
 

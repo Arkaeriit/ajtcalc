@@ -14,5 +14,6 @@ class DecodageException extends Exception { //Permet de voir si on a une erreur 
     public String raison(){
         return "Reason : "+problème;
     }
+
 }
 

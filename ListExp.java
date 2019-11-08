@@ -60,5 +60,6 @@ class ListExp extends ArrayList<Expression> {
     protected double getNValeur(int i){
         return get(2 * i).getValeur();
     }
+
 }
 

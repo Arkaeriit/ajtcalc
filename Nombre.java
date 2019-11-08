@@ -19,5 +19,6 @@ class Nombre extends Formule {
     public double getValeur(){
         return valeur;
     }
+
 }  
 

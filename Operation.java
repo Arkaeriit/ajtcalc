@@ -18,4 +18,6 @@ class Operation extends Expression{
         System.err.println("Tentative de lecture de la valeur d'un symbole");
         return 0;
     }
+
 }
+

@@ -36,6 +36,8 @@ class Stack {
             throw new DecodageException("Stack disabled in this mode");
         if(nombreElem == 0)
             throw new DecodageException("No elements on the stack");
+        if(n < 0)
+            throw new DecodageException("Invalid index : you can't ask for a negative position on the stack");
         if(n > nombreElem)
             throw new DecodageException("Not enought elements on the stack");
         StackElem tmp = sommet;
@@ -67,7 +69,6 @@ class Stack {
         save =  save.nextSave;
     }
 
-
 }
 
 class StackElem {
@@ -78,6 +79,7 @@ class StackElem {
         this.valeur = valeur;
         this.nextElem = this; //Permet d'éviter de lire un null
     }
+
 }
 
 class StackSave { //Sert à se remémorer des niveaux de la pile
@@ -89,4 +91,6 @@ class StackSave { //Sert à se remémorer des niveaux de la pile
         this.savedElem = savedElem;
         this.nextSave = this;
     }
+
 }
+
