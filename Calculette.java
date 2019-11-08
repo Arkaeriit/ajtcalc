@@ -3,14 +3,13 @@
 mathématique représentée par une liste d'expressions.     |
 \--------------------------------------------------------*/
 
-import java.util.ArrayList;
-
 class Calculette extends ListExp {
 
     public double valeur;
     private ListExp tabExpOrigine;
 
-    public Calculette(ArrayList<Expression> tabExp){
+    public Calculette(ListExp tabExp){
+        super(tabExp.size());
         tabExpOrigine = new ListExp(tabExp);
         init();
         valeur = 0;
@@ -28,7 +27,7 @@ class Calculette extends ListExp {
             }
         }
         addExpression(tempo);
-        tabExpOrigine.tabExp = new ArrayList<Expression>(tabExp);
+        tabExpOrigine = new ListExp(this);
         init();
 
         tempo = tabExpOrigine.getNValeur(0);//Puis les divisions/multiplucations
@@ -44,7 +43,7 @@ class Calculette extends ListExp {
             }
         }
         addExpression(tempo);
-        tabExpOrigine.tabExp = new ArrayList<Expression>(tabExp);
+        tabExpOrigine = new ListExp(this);
         init();
         
         tempo = tabExpOrigine.getNValeur(0);//Puis les additions/soustraction
