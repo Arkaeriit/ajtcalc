@@ -24,6 +24,10 @@ class Interpreteur {
         String tmp = "";
         while(sc.hasNextLine()){
             tmp = tmp+sc.nextLine();
+            if(tmp.length() > 2){ //On cherche à enlever les #! si 
+                if(tmp.substring(0,2).equals("#!"))
+                    tmp = "";
+            }
             if(tmp.length() > 0){
                 if(tmp.charAt(tmp.length() - 1) == '\\'){ //On a une expression sur plusieur lignes
                     tmp = tmp.substring(0,tmp.length() - 1); //On enlève le \
@@ -80,6 +84,28 @@ class Interpreteur {
         for(int i=0;i<listReponses.size();i++)
             ret = ret + listReponses.get(i);
         return ret;
+    }
+
+    public static void main(String[] args){
+        try{
+            if(args.length >= 1){ //On a une expression en plus du fichier
+                String argExp = "";
+                for(int i=1; i<args.length;i++)
+                    argExp = argExp + args[i];
+                Stack.enableStack();
+                try{
+                    Nombre valeurIn = new Nombre(argExp);
+                    Stack.addElem(valeurIn.getValeur());
+                }catch(Exception e){
+                    Stack.addElem(Double.NaN);
+                }
+            }
+            Interpreteur inte = new Interpreteur(args[0]);
+            System.out.print(inte);
+        }catch(FileNotFoundException e){
+            System.err.println("No such file as "+args[0]);
+            System.exit(3);
+        }
     }
 
 }

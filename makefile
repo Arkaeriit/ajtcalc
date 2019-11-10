@@ -1,8 +1,11 @@
 
-all : ajtcalc.jar 
+all : ajtcalc.jar ajtcalc-crushbang.jar 
 
 ajtcalc.jar : Classes
 	jar cf0e ajtcalc.jar Interface *.class
+
+ajtcalc-crushbang.jar : Classes
+	jar cf0e ajtcalc-crushbang.jar Interpreteur *.class
 
 Classes : Calculette.java Decodeur.java Expression.java Interface.java ListExp.java Nombre.java Operation.java Formule.java Fonction.java Solveur.java Stack.java Interpreteur.java DecodageException.java NoSolveJustPrintException.java UnsolvableException.java
 	javac *.java
@@ -12,11 +15,14 @@ clean :
 	rm -f *.jar
 	rm -f ajtcalc
 
-install : ajtcalc shell.ajt
+install : ajtcalc shell.ajt ajtcalc-crushbang
 	mkdir -p /usr/local/share/ajtcalc
 	cp -f ajtcalc /usr/local/bin
 	cp -f ajtcalc.jar /usr/local/share/ajtcalc
 	cp -f shell.ajt /usr/local/share/ajtcalc
+	cp -f ajtcalc-crushbang.jar /usr/local/share/ajtcalc
+	cp -f ajtcalc-crushbang /usr/local/share/ajtcalc
+	rm -f ajtcalc-crushbang
 	rm -f ajtcalc
 	
 uninstall : 
@@ -28,4 +34,10 @@ ajtcalc :
 	echo '#This little stript is ment to lauch the calculator.' >> ajtcalc
 	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc.jar "$$@"' >> ajtcalc 
 	chmod 755 ajtcalc
+
+ajtcalc-crushbang : 
+	echo '#!/bin/sh' > ajtcalc-crushbang
+	echo '#This little script is ment to interprete a file starting with #!' >> ajtcalc-crushbang
+	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc-crushbang.jar "$$@"' >> ajtcalc-crushbang
+	chmod 755 ajtcalc-crushbang
 
