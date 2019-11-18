@@ -24,8 +24,8 @@ class Interpreteur {
         String tmp = "";
         while(sc.hasNextLine()){
             tmp = tmp+sc.nextLine();
-            if(tmp.length() > 2){ //On cherche à enlever les #! si 
-                if(tmp.substring(0,2).equals("#!"))
+            if(tmp.length() > 0){ //On cherche à enlever les #! si 
+                if(tmp.substring(0,1).equals("#"))
                     tmp = "";
             }
             if(tmp.length() > 0){

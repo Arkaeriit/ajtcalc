@@ -67,6 +67,8 @@ List of basic functions:
 
 If you put a semi-colon after an expression to ignore everything coming after the semi-colon. You can use this to put a comment on your operations.
 
+You can also put a '#' at the beginning of a line to prevent the interpreter from reading that line.
+
 #### Examples
 
 Here is a list of some valid expressions:
@@ -116,11 +118,14 @@ Here is an example of the use of the shell where the stack is used:
 
 ### Programming with ajtcalc
 
-Even if I don't advise it because it is quite tedious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call its position on the stack. You can call a function you wrote with the `run` function. You can do conditional branching with the functions `ifBE` and `ifGT`. You should hide the calculations that aren't interesting with the functions `q` ou `quiet`.
+Even if I don't advise it because it is quite tedious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call its position on the stack. You can call a function you wrote with the `run` function. You can do conditional branching with the functions `ifBE`, `ifGT` and `ifEQ`. You should hide the calculations that aren't interesting with the functions `q` ou `quiet`.
 
 #### Creating a function
 
 To create a function, you must write it in a new file. You should start it with `stackSave()` to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with `stackBack(Exp1,...,ExpN)` where the content of the stackBack is what your function return. To call your function from a file you mist put its argument on top of the stack and then call it with `run(nameOfTheFileOfYourFunction)`.
+
+#### #!
+You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-crushbang.
 
 #### Example
 
@@ -146,8 +151,9 @@ Inside the example folder is a program that asks the user for three numbers and 
 * quiet(Exp) : solve `Exp` and put the resut on the stack but don't print anything
 * q(Exp) : like quiet
 * run(filename) : interpret the file named filename, the results of each expression from the file are put on the stack ans the results are printed
-* ifBE(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is above 0 the function evaluate Exp3, if Exp1 is equal or below 0 it evaluate Exp2
-* ifGT(Exp1,Exp2,Exp3) : evaluate Exp1, if Exp1 is below or equal to 0 the function evaluate Exp3, if Exp1 is above it evaluate Exp2
+* ifBE(Exp1,Exp2,Exp3) : evaluates Exp1, if Exp1 is above 0 the function evaluates Exp3, if Exp1 is equal or below 0 it evaluates Exp2
+* ifGT(Exp1,Exp2,Exp3) : evaluates Exp1, if Exp1 is below or equal to 0 the function evaluates Exp3, if Exp1 is above it evaluates Exp2
+* ifEQ(Exp1,Exp2,Exp3) : evaluates Exp1, if Exp1 is equal to 0 the function evaluates Exp2, if Exp1 is not 0 it evaluates Exp2
 * input(prompt) : ask the user for input, asking with the desired prompt or no prompt if none is given
 * disp() : display all the answer of the interpreter so far
 * showStack() : show all the content of the stack, useful for debugging, the stack is not changed
