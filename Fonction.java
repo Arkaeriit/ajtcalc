@@ -84,6 +84,7 @@ class Fonction extends Nombre {
                 Stack.addElem(arg0.getValeur());
             }catch(UnsolvableException exp){
                  Stack.addElem(Double.NaN);
+                 throw exp; //Si il y a un problème on le fait remarquer
             }
             catch(NoSolveJustPrintException exp){
                 if(!exp.getSpecialMessage().equals("noStack"))
