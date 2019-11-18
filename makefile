@@ -1,5 +1,5 @@
 
-all : ajtcalc.jar ajtcalc-crushbang.jar 
+all : ajtcalc.jar 
 
 ajtcalc.jar : Classes
 	jar cf0e ajtcalc.jar Interface *.class
