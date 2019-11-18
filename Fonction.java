@@ -116,6 +116,15 @@ class Fonction extends Nombre {
             else
                 ret = new Nombre(argv[1]);
             valeur = ret.getValeur();
+        }else if(fonction.equals("ifEQ")){
+            e.compareArg(3);
+            Nombre arg0 = new Nombre(argv[0]);
+            Nombre ret;
+            if(arg0.getValeur() == 0)
+                ret = new Nombre(argv[1]);
+            else
+                ret = new Nombre(argv[2]);
+            valeur = ret.getValeur();
         }else if(fonction.equals("input")){
             e.compareArg(0,1);
             Scanner scanner = new Scanner(System.in);
