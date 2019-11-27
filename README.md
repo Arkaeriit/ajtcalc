@@ -37,6 +37,7 @@ List of operations:
 * multiplication, symbolized by \* or x
 * division, symbolized by /
 * exponentiation, symbolized by ^ or \*\*
+* multiplication by a power of 10, e
 
 For operation with more than one symbol such as multiplication, you can use each one in the same expression.
 

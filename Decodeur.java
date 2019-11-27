@@ -142,6 +142,10 @@ class Decodeur extends ListExp {
                             addExpression('x');
                         }
                         break;
+                    case 'e':
+                        pointeurFormule++;
+                        addExpression('e');
+                        break;
                     case ';': //On met un commentaire derrière, on arrète de lire l'expression
                         return;
                     default :

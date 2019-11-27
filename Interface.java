@@ -96,6 +96,7 @@ class Interface{
         System.out.println("        * multiplication, symbolised by * or x");
         System.out.println("        * division, symbolised by /");
         System.out.println("        * exponentiation, symbolised by ^ or **");
+        System.out.println("        * multiplication by a power of 10, symbolised by e");
         System.out.println("");
         System.out.println("        For operation with more than one symbol such as multiplication, you can use each one in the same expression.");
         System.out.println("");
