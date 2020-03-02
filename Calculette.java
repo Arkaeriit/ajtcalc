@@ -44,12 +44,16 @@ class Calculette extends ListExp {
         tabExpOrigine = new ListExp(this);
         init();
 
-        tempo = tabExpOrigine.getNValeur(0);//Puis les divisions/multiplucations
+        tempo = tabExpOrigine.getNValeur(0);//Puis les divisions/multiplications/divisions euclidiennes/modulo
         for(int i=0;i<tabExpOrigine.nombreOperations();i++){
             if(tabExpOrigine.getNSymbole(i) == 'x'){
                 tempo = tempo * tabExpOrigine.getNValeur(i+1);
             }else if(tabExpOrigine.getNSymbole(i) == '/'){
                 tempo = tempo / tabExpOrigine.getNValeur(i+1);
+            }else if(tabExpOrigine.getNSymbole(i) == '%'){
+                tempo = tempo % tabExpOrigine.getNValeur(i+1);
+            }else if(tabExpOrigine.getNSymbole(i) == '|'){
+                tempo = (tempo - (tempo % tabExpOrigine.getNValeur(i+1)))/tabExpOrigine.getNValeur(i+1);
             }else{
                 addExpression(tempo);
                 addExpression(tabExpOrigine.getNSymbole(i));

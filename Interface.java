@@ -92,9 +92,11 @@ class Interface{
         System.out.println("    Operations:");
         System.out.println("        List of operations:");
         System.out.println("        * addition, symbolised by +");
-        System.out.println("        * substation, symbolised by -");
+        System.out.println("        * substraction, symbolised by -");
         System.out.println("        * multiplication, symbolised by * or x");
         System.out.println("        * division, symbolised by /");
+        System.out.println("        * euclidean division, symbolised by | or //");
+        System.out.println("        * modulo, symbolised by %");
         System.out.println("        * exponentiation, symbolised by ^ or **");
         System.out.println("        * multiplication by a power of 10, symbolised by e");
         System.out.println("");

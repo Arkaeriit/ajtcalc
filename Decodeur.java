@@ -118,8 +118,17 @@ class Decodeur extends ListExp {
                         addExpression('-');
                         break;
                     case '/':
+                        if(formule.charAt(pointeurFormule+1) == '/'){
+                            addExpression('|');
+                            pointeurFormule += 2;
+                        }else{
+                            pointeurFormule++;
+                            addExpression('/');
+                        }
+                        break;
+                    case '|':
+                        addExpression('|');
                         pointeurFormule++;
-                        addExpression('/');
                         break;
                     case ':':
                         pointeurFormule++;
@@ -145,6 +154,10 @@ class Decodeur extends ListExp {
                     case 'e':
                         pointeurFormule++;
                         addExpression('e');
+                        break;
+                    case '%':
+                        pointeurFormule++;
+                        addExpression('%');
                         break;
                     case ';': //On met un commentaire derrière, on arrète de lire l'expression
                         return;

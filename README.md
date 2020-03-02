@@ -33,9 +33,11 @@ Spaces are ignored, so you can use them to make your expression easier to read w
 
 List of operations:
 * addition, symbolized by +
-* substation, symbolized by -
+* substraction, symbolized by -
 * multiplication, symbolized by \* or x
 * division, symbolized by /
+* euclidean division, symbolised by | or //
+* modulo, symbolised by %
 * exponentiation, symbolized by ^ or \*\*
 * multiplication by a power of 10, e
 

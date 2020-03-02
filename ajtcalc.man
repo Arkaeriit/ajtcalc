@@ -1,0 +1,252 @@
+.TH ajtcalc 2020-01-21 1
+.SH Name
+A CLI-calculator that can do symbolic computation.
+.SH Synopsis
+.SY ajtcalc
+.OP "expression to solve"
+.YS
+.
+.SY ajtcalc shell
+.YS
+.
+.SY ajtcalc file
+.OP filename
+.OP expression
+.YS
+.
+.SY ajtcalc help
+.YS
+
+.SH Description
+Let you do some calculation or compute a list of calculation on a file.
+
+.SH Options
+By default the expression entered as argumet will be solved.
+.TP
+shell
+Start a shell where you can write expression.
+.TP
+file
+Read expression from a file.
+You can add an additional expression witch will be solved before the others as an argument.
+.TP
+help
+Print an help message.
+
+.SH Manual
+.SH Expressions
+.P
+The expression to solve is a sequence of number or sub-expression put between parentheses and operations such as 3 x ( 4 + 1 )
+.P
+Spaces are ignored, so you can use them to make your expression easier to read while you write them.
+.RS 1
+.SS Operations
+List of operations:
+.TP
+addition
+symbolised by +
+.TP
+substraction
+symbolised by -
+.TP
+multiplication
+symbolised by * or x
+.TP
+division
+symbolised by /
+.TP
+exponentiation
+symbolised by ^ or **
+.TP
+multiplication by a power of 10
+symbolised by e
+
+.P
+For operation with more than one symbol such as multiplication, you can use each one in the same expression.
+
+.SS
+Numbers
+.P
+Numbers are typed in the decimal system. You can use decimal numbers.
+.SS
+Parenthesis
+.P
+To compute a sub-expression first you can put it between parentheses. You can use (, { or [ to open parenthesis and ), } or ] to close them.
+.SS
+Basic Functions
+.P
+You can apply functions on numbers or expressions.
+.P
+To do that you have to write the name of the function then it's arguments between parentheses, bracket or curly brackets.
+
+
+List of basic functions:
+.TP
+abs(x)
+return the absolute value of x
+.TP
+floor(x)
+return x rounded down
+.TP
+ceil(x)
+return x rounded up
+.TP
+max(x,y)
+return the biggest number between x and y
+.TP
+min(x,y)
+return the smallest number between x and y
+.TP
+solve(var,Exp,min,max)
+solve Exp(var) = 0 with var being between min and max
+.TP
+e()
+return the constant e, Euler's number
+.TP
+pi()
+return the number pi
+.TP
+exit()
+exit a shell or stop an interpreter
+.SS
+Comments
+.P
+If you put a semi-colon after an expression to ignore everything coming after the semi-colon. You can use this to put a comment on your operations.
+.P
+You can also put a '#' at the beginning of a line to prevent the interpreter from reading that line.
+
+.SS
+Examples
+Here is a list of some valid expressions:
+.EX
+( 3 * (4.0 + 0.01)) ^3
+{ (3+2) * 4**2 x 6 - 5 ]^0.3
+3 ** (4 - 5)
+4*10**1+2x10^0
+2**max(4,abs(-76*2))
+abs(floor(-3.5)*3)
+.EE
+.RE
+.SE
+The stack
+.P
+When using a shell or running a file thought an interpreter the previous answers are stored in a stack. You can access this with the function ans. ans() or ans(0) will give you the last calculated answer and ans(n) will give you the nth previous answer.
+.P
+If the previous expression had a mistake in it or just printed something with echo() NaN will be added on the stack.
+.P
+If you start an Interpreter by giving an expression after the filename in augment the result of the expression will be on top of the stack.
+.SS 
+Preserving the stack
+.P
+If you want to preserve the state of the stack, you can use the function stackSave(). To revert the stack to the previously saved state you can use stackBack(). Theses two functions don't change the stack in any other way. When you save the state of the stack, you can still access the values that were there before you saved. When you revert to the previous saved the changes on the stack made between the save and the revert are lost.
+
+.SS
+Example
+Here is an example of the use of the shell where the stack is used:
+.EX
+        > 1+2
+        3
+        > 4*4
+        16
+        > ans(1)
+        3
+        > 7
+        7
+        > stackSave()
+        > 8*8
+        64
+        > 9*9
+        81
+        > stackBack()
+        > ans()
+        7
+        > ans(2)
+        3
+.EE
+.SE
+Programming with ajtcalc
+.P
+Even if I don't advise it because it is quite tedious you can use ajtcalc as an interpreter for a turing compatible language. To access a value you have to call its position on the stack. You can call a function you wrote with the run function. You can do conditional branching with the functions ifBE, ifGT and ifEQ. You should hide the calculations that aren't interesting with the functions q ou quiet.
+.SS
+Creating a function:
+.P
+To create a function, you must write it in a new file. You should start it with stackSave() to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with stackBack(Exp1,...,ExpN) where the content of the stackBack is what your function return. To call your function from a file you mist put its argument on top of the stack and then call it with run(nameOfTheFileOfYourFunction).
+.SS
+#!
+.P
+You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-crushbang.
+
+.SE
+List of all functions
+.TP
+abs(x)
+return the absolute value of x
+.TP
+floor(x)
+return x rounded down
+.TP
+ceil(x)
+return x rounded up
+.TP
+max(x,y)
+return the biggest number between x and y
+.TP
+min(x,y)
+return the smallest number between x and y
+.TP
+echo(message)
+print message, ignore everything else
+.TP
+exit()
+exit a shell or stop an interpreter
+.TP
+ans(n)
+in a shell or an interpreter, return the nth previous answer (starting at 0), if no argument is given the previous answer will be chosen
+.TP
+define(var,Exp1,Exp2)
+replace every instance of var in Exp2 by Exp1
+.TP
+solve(var,Exp,min,max)
+solve Exp(var) = 0 with var being between min and max
+.TP
+e()
+return the constant e, Euler's number
+.TP
+pi()
+return the number pi
+.TP
+stackSave()
+save the state of the stack
+.TP
+stackBack()
+revert to the previously saved state of the stack
+.TP
+stackBack(Exp1,...,ExpN)
+revert to the previously saved state of the stack and put the evaluation of each arguments on to of the stack, at the end the last argument will be on top of the stack
+.TP
+quiet(Exp)
+solve Exp and put the result on the stack but don't print anything
+.TP
+q(Exp)
+like quiet
+.TP
+run(filename)
+interpret the file named filename, the results of each expression from the file are put on the stack ans the results are printed
+.TP
+ifBE(Exp1,Exp2,Exp3)
+evaluates Exp1, if Exp1 is above 0 the function evaluates Exp3, if Exp1 is equal or below 0 it evaluates Exp2
+.TP
+ifGT(Exp1,Exp2,Exp3)
+evaluates Exp1, if Exp1 is below or equal to 0 the function evaluates Exp3, if Exp1 is above it evaluates Exp2
+.TP
+ifEQ(Exp1,Exp2,Exp3)
+evaluates Exp1, if Exp1 is equal to 0 the function evaluates Exp2, if Exp1 is not 0 it evaluates Exp3
+.TP
+input(prompt)
+ask the user for input, asking with the desired prompt or no prompt if none is given
+.TP
+disp()
+display all the answer of the interpreter so far
+.TP
+showStack()
+show all the content of the stack, useful for debugging, the stack is not changed
