@@ -128,7 +128,7 @@ Even if I don't advise it because it is quite tedious you can use ajtcalc as an 
 To create a function, you must write it in a new file. You should start it with `stackSave()` to ensure that the code executed inside the function doesn't affect the rest of the program. The file must end with `stackBack(Exp1,...,ExpN)` where the content of the stackBack is what your function return. To call your function from a file you mist put its argument on top of the stack and then call it with `run(nameOfTheFileOfYourFunction)`.
 
 #### #!
-You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-crushbang.
+You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-shebang.
 
 #### Example
 

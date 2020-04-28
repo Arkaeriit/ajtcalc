@@ -1,4 +1,4 @@
-#!/usr/local/share/ajtcalc/ajtcalc-crushbang
+#!/usr/local/share/ajtcalc/ajtcalc-shebang
 q(input(First number : ));We ask for three number and we return them sorted
 q(input(Second number : ))
 q(input(third number : ))

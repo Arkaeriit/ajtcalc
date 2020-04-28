@@ -12,13 +12,13 @@ clean :
 	rm -f *.jar
 	rm -f ajtcalc
 
-install : ajtcalc shell.ajt ajtcalc-crushbang
+install : ajtcalc shell.ajt ajtcalc-shebang
 	mkdir -p /usr/local/share/ajtcalc
 	cp -f ajtcalc /usr/local/bin
 	cp -f ajtcalc.jar /usr/local/share/ajtcalc
 	cp -f shell.ajt /usr/local/share/ajtcalc
-	cp -f ajtcalc-crushbang /usr/local/share/ajtcalc
-	rm -f ajtcalc-crushbang
+	cp -f ajtcalc-shebang /usr/local/share/ajtcalc
+	rm -f ajtcalc-shebang
 	rm -f ajtcalc
 	
 uninstall : 
@@ -31,9 +31,9 @@ ajtcalc :
 	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc.jar "$$@"' >> ajtcalc 
 	chmod 755 ajtcalc
 
-ajtcalc-crushbang : 
-	echo '#!/bin/sh' > ajtcalc-crushbang
-	echo '#This little script is ment to interprete a file starting with #!' >> ajtcalc-crushbang
-	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc.jar file "$$@"' >> ajtcalc-crushbang
-	chmod 755 ajtcalc-crushbang
+ajtcalc-shebang : 
+	echo '#!/bin/sh' > ajtcalc-shebang
+	echo '#This little script is ment to interprete a file starting with #!' >> ajtcalc-shebang
+	echo 'java -jar /usr/local/share/ajtcalc/ajtcalc.jar file "$$@"' >> ajtcalc-shebang
+	chmod 755 ajtcalc-shebang
 

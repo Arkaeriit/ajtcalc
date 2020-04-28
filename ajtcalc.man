@@ -174,7 +174,7 @@ To create a function, you must write it in a new file. You should start it with 
 .SS
 #!
 .P
-You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-crushbang.
+You can make an ajtcalc file executable. With this repository's makefile the interpreter you will have ta call /usr/local/share/ajtcalc/ajtcalc-shebang.
 
 .SE
 List of all functions
